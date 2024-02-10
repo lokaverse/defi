@@ -1,25 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
+import AppProvider from "./context";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Navigate,
+} from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "react-query";
 
-function App() {
+import Layout from "./layout";
+import Stake from "./containers/Stake";
+import Swap from "./containers/Swap";
+import Redeem from "./containers/Redeem";
+import History from "./containers/History";
+
+const queryClient = new QueryClient();
+
+const router = createBrowserRouter([
+  {
+    element: <Layout />,
+    children: [
+      {
+        path: "/",
+        element: <Navigate to="/stake" />,
+      },
+      {
+        path: "/stake",
+        element: <Stake />,
+      },
+      {
+        path: "swap",
+        element: <Swap />,
+      },
+      {
+        path: "redeem",
+        element: <Redeem />,
+      },
+      {
+        path: "history",
+        element: <History />,
+      },
+    ],
+  },
+]);
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppProvider>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
+    </AppProvider>
   );
-}
+};
 
 export default App;
