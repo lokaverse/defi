@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Layout, Menu, theme, Row, Col } from "antd";
 import { Outlet } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
@@ -7,6 +7,8 @@ import { useMediaQuery } from "react-responsive";
 import BottomNavigation from "./components/BottomNavigation";
 
 import LokaLogo from "../assets/image/loka_logo.png";
+
+import "./style.css";
 
 const { Header, Content, Footer } = Layout;
 
@@ -30,6 +32,7 @@ const menuItem = [
 ];
 
 const LayoutContainers = () => {
+  const { pathname } = useLocation();
   const navigate = useNavigate();
   const isMobile = useMediaQuery({ maxWidth: 767 });
   const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
@@ -49,6 +52,7 @@ const LayoutContainers = () => {
 
   return (
     <Layout
+      className="main-layout"
       style={{
         minHeight: `${viewportHeight}px`,
         backgroundColor: "#101828",
@@ -82,7 +86,7 @@ const LayoutContainers = () => {
               <Menu
                 theme="dark"
                 mode="horizontal"
-                defaultSelectedKeys={["stake"]}
+                defaultSelectedKeys={[`${pathname.slice(1)}`]}
                 items={menuItem}
                 style={{
                   flex: 1,
@@ -102,7 +106,11 @@ const LayoutContainers = () => {
             color: "white",
           }}
         >
-          <Outlet />
+          <Row justify={"center"}>
+            <Col xs={{ span: 24 }} md={{ span: 12 }} lg={{ span: 6 }}>
+              <Outlet />
+            </Col>
+          </Row>
         </div>
       </Content>
       {isMobile && (

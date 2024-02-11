@@ -1,0 +1,74 @@
+.faq-container .header-title {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    padding: 44px 0px 8px 0px;
+}
+
+.faq-container .header-title p {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 30px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin: 0px;
+}
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.faq-collapse {
+    border: none !important;
+}
+
+.faq-collapse .ant-collapse-item {
+    border-bottom: none !important;
+}
+
+.faq-collapse .ant-collapse-header {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none !important;
+    border-radius: 12px !important;
+    align-items: center !important;
+}
+
+.faq-collapse .ant-collapse-item-active .ant-collapse-header {
+    border-bottom-left-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+}
+
+.faq-collapse  .ant-collapse-expand-icon svg {
+    fill: white;
+}
+
+.faq-collapse .ant-collapse-header-text {
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.faq-collapse .ant-collapse-content {
+    border-top: none !important;
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    border-bottom-left-radius: 12px !important;
+    border-bottom-right-radius: 12px !important;
+}
+
+
+
+.faq-collapse .ant-collapse-content-box {
+    padding: 0px 24px 12px 24px !important;   
+}
+
+.faq-collapse .ant-collapse-content-box p {
+    color: white;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+}

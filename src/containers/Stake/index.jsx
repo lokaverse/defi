@@ -1,9 +1,15 @@
 import React from "react";
 
+import AssetTable from "../../components/AssetTable";
+import StakeCkBTC from "../../components/StakeCkBTC";
+import Faq from "../../components/Faq";
+
 const Stake = () => {
   return (
     <main className="stake-container">
-      <p>Stake</p>
+      <AssetTable />
+      <StakeCkBTC />
+      <Faq />
     </main>
   );
 };
