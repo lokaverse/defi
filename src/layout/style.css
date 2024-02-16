@@ -1,6 +1,6 @@
 .main-layout {
-    background: radial-gradient(ellipse at top right, #740355, 2%, transparent),
-            radial-gradient(ellipse at bottom left, #1F5C52, 2%, transparent);
+    background: radial-gradient(ellipse at top right, #063960, 10%, transparent),
+            radial-gradient(ellipse at bottom left, #996A11 , 20%, transparent);
 }
 
 .header-logo-container {

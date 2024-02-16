@@ -23,7 +23,7 @@ const router = createBrowserRouter([
         element: <Navigate to="/stake" />,
       },
       {
-        path: "/stake",
+        path: "stake",
         element: <Stake />,
       },
       {

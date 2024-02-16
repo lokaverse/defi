@@ -1,14 +1,16 @@
 .bottom-navigation-container {
     height: 90px;
     width: 100%;
-    background-color: #1C1C1C;
+    background-color: #192C38;
     padding: 24px 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: 'fixed';
-    bottom: 0
+    bottom: 0;
+    border-top: 1px solid #98A2B3;
 }
+
 
 .bottom-navigation-item {
     display: flex;
@@ -42,10 +44,10 @@
 
 .selected-menu .bottom-navigation-label {
     font-weight: 600 !important;
-    color: #65B2A5 !important;
+    color: #ECA400 !important;
   
 }
 
 .selected-menu svg {
-    stroke: #65B2A5 !important;
+    stroke: #ECA400 !important;
 }

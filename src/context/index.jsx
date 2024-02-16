@@ -21,16 +21,19 @@ export const AppContext = createContext({});
 
 const themeProvider = {
   token: {
-    colorPalette1: "#79d5c6", // soft green
+    colorPalette1: "#ECA400", // orange
     colorPalette2: "#134E48", // green
     colorPalette3: "#FFFB07", // yellow
     fontFamily: "Inter",
     Button: {
-      colorPrimary: "linear-gradient(90deg, #112cbccc, #8d2895cc) !important",
+      colorPrimary:
+        "linear-gradient(88.85deg, #043153 -9.61%, #E09B00 116.77%)",
+      // colorPrimary:
+      //   "linear-gradient(47deg, rgba(4,49,83,1) 18%, rgba(224,155,0,1) 76%)",
       fontWeight: 600,
       primaryColor: "white",
-      border: "border: 1px solid #7F56D9",
-      borderColorDisabled: "border: 1px solid #7F56D9",
+      border: "border: 1px solid #043153",
+      borderColorDisabled: "border: 1px solid #043153",
     },
   },
   components: {
