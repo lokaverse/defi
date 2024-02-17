@@ -5,6 +5,7 @@ import { Outlet } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 
 import BottomNavigation from "./components/BottomNavigation";
+import AddressButton from "../components/AddressButton";
 
 import LokaLogo from "../assets/image/loka_logo.png";
 
@@ -96,6 +97,17 @@ const LayoutContainers = () => {
               />
             </Col>
           )}
+
+          <Col
+            xs={{ span: 19 }}
+            lg={{ span: 9 }}
+            style={{ display: "flex", justifyContent: "flex-end" }}
+          >
+            <AddressButton />
+            {/* <div className="header-address-button">
+              <AddressButton />
+            </div> */}
+          </Col>
         </Row>
       </Header>
       <Content>

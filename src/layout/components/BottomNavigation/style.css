@@ -23,7 +23,7 @@
 }
 
 .bottom-navigation-item:active {
-    transform: scale(0.75); /* Slightly scale down the item when clicked */
+    transform: scale(0.75); 
 }
 
 .bottom-navigation-label {

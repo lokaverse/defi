@@ -1,0 +1,61 @@
+.address-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.button-container {
+    display: flex;
+    flex: none;
+    height: 48px;
+    align-items: center;
+    border-radius: 26px;
+    padding: 16px;
+    gap: 18px;
+    border: 1px solid rgba(236, 164, 0, 0.8);
+}
+
+
+.address-button-container p {
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: white;
+    margin: 0px;
+}
+
+.custom-switch {
+    background-color: #0000004D;
+    width: 85px;
+    height: 32px;
+    border-radius: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 5px;
+
+}
+
+.icon-container {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(146.98% 137.5% at 68.75% 100%, rgba(206, 206, 206, 0.72) 0%, rgba(70, 63, 74, 0.6624) 100%)
+
+}
+
+.wallet-address {
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: white
+}
+

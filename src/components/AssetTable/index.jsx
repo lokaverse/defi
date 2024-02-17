@@ -3,25 +3,25 @@ import { Avatar } from "antd";
 
 import "./style.css";
 
-const mockItem = [
-  {
+const assets = {
+  powckBTC: {
     name: "powckBTC",
     val: "12.004",
     backgroundColor: "#3abde2",
   },
-  {
+  MPTS: {
     name: "MPTS",
     val: "0.000576",
     backgroundColor: "#FFD6AE",
   },
-  {
+  LPTS: {
     name: "LPTS",
     val: "0.002856",
     backgroundColor: "#A6EF67",
   },
-];
+};
 
-const AssetTable = () => {
+const AssetTable = ({ showApr, listAsset }) => {
   const getIcon = (asset) => {
     if (asset === "powckBTC") {
     }
@@ -35,33 +35,37 @@ const AssetTable = () => {
         <div className="asset-title">
           <p>My assets</p>
         </div>
-        <div className="loka-apr">
-          <div className="apr-background">
-            <p>
-              LOKA APR <span className="percentage-apr">12%</span>
-            </p>
+        {showApr && (
+          <div className="loka-apr">
+            <div className="apr-background">
+              <p>
+                LOKA APR <span className="percentage-apr">12%</span>
+              </p>
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       <div className="asset-table-item-list">
-        {mockItem.map((asset) => {
+        {listAsset.map((asset) => {
+          if (!assets[asset]) return null;
+          const dataAsset = assets[asset];
           return (
             <div className="asset-item">
               <div className="asset-name">
                 <Avatar
                   size="small"
                   style={{
-                    backgroundColor: asset.backgroundColor,
+                    backgroundColor: dataAsset.backgroundColor,
                     color: "#000000",
                     marginRight: "10px",
                   }}
                 >
-                  {asset.name[0].toUpperCase()}
+                  {dataAsset.name[0].toUpperCase()}
                 </Avatar>
-                <span>{asset.name}</span>
+                <span>{dataAsset.name}</span>
               </div>
-              <span>{asset.val}</span>
+              <span>{dataAsset.val}</span>
             </div>
           );
         })}
