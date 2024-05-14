@@ -16,12 +16,12 @@ const SwapAsset = ({ type, value, asset, swapOption, onSwap }) => {
         <div className="top">
           <p className="swap-amount">0.0003</p>
           <Select
-            className="swap-amoun-select"
+            className="swap-asset-select custom-currency-select"
             value={value}
             onChange={(val) => onSwap(type, val)}
             options={swapOption.map((opt) => ({ value: opt, label: opt }))}
             dropdownRender={(menu) => (
-              <div className="swap-drop-down">{menu}</div>
+              <div className="custom-currency-select-dropdown">{menu}</div>
             )}
           />
         </div>

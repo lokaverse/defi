@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { ConfigProvider } from "antd";
 
-// import OpenLogin from "@toruslabs/openlogin";
+import OpenLogin from "@toruslabs/openlogin";
 
 // import {
 //   lokaMinerAgentCreation,
@@ -13,11 +13,11 @@ import smallIcon from "../assets/icon/favico_loka.png";
 
 export const AppContext = createContext({});
 
-// const openLoginConfig = {
-//   clientId: process.env.REACT_APP_OPEN_LOGIN_CLIENT_ID,
-//   network: process.env.REACT_APP_OPEN_LOGIN_NETWORK,
-//   uxMode: "popup",
-// };
+const openLoginConfig = {
+  clientId: process.env.REACT_APP_OPEN_LOGIN_CLIENT_ID,
+  network: process.env.REACT_APP_OPEN_LOGIN_NETWORK,
+  uxMode: "popup",
+};
 
 const themeProvider = {
   token: {
@@ -28,8 +28,6 @@ const themeProvider = {
     Button: {
       colorPrimary:
         "linear-gradient(88.85deg, #043153 -9.61%, #E09B00 116.77%)",
-      // colorPrimary:
-      //   "linear-gradient(47deg, rgba(4,49,83,1) 18%, rgba(224,155,0,1) 76%)",
       fontWeight: 600,
       primaryColor: "white",
       border: "border: 1px solid #043153",
@@ -64,20 +62,20 @@ export const AppProvider = ({ children }) => {
   const [lokaMinerAgent, setLokaMinerAgent] = useState();
   const [ckBTCAgent, setCkBTCAgent] = useState();
 
-  //   useEffect(() => {
-  //     async function initializeOpenlogin() {
-  //       const sdkInstance = new OpenLogin(openLoginConfig);
-  //       await sdkInstance.init();
-  //       setSdk(sdkInstance);
-  //       if (sdkInstance?.privKey) {
-  //         const minerAgent = lokaMinerAgentCreation(sdkInstance.privKey);
-  //         const ckbtcAgent = ckBTCAgentCreation(sdkInstance.privKey);
-  //         setLokaMinerAgent(minerAgent);
-  //         setCkBTCAgent(ckbtcAgent);
-  //       }
-  //     }
-  //     initializeOpenlogin();
-  //   }, []);
+  useEffect(() => {
+    async function initializeOpenlogin() {
+      const sdkInstance = new OpenLogin(openLoginConfig);
+      await sdkInstance.init();
+      setSdk(sdkInstance);
+      if (sdkInstance?.privKey) {
+        // const minerAgent = lokaMinerAgentCreation(sdkInstance.privKey);
+        // const ckbtcAgent = ckBTCAgentCreation(sdkInstance.privKey);
+        // setLokaMinerAgent(minerAgent);
+        // setCkBTCAgent(ckbtcAgent);
+      }
+    }
+    initializeOpenlogin();
+  }, []);
 
   return (
     <AppContext.Provider

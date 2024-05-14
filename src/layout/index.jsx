@@ -63,7 +63,7 @@ const LayoutContainers = () => {
         style={{
           display: "flex",
           alignItems: "center",
-          padding: !isMobile ? "0 25px" : "0 10px",
+          padding: !isMobile ? "0 25px" : "0 16px",
         }}
       >
         <Row style={{ width: "100%" }}>
@@ -104,9 +104,6 @@ const LayoutContainers = () => {
             style={{ display: "flex", justifyContent: "flex-end" }}
           >
             <AddressButton />
-            {/* <div className="header-address-button">
-              <AddressButton />
-            </div> */}
           </Col>
         </Row>
       </Header>

@@ -1,0 +1,42 @@
+.request-withdraw-form-container {
+    border: 1px solid #CA8504;
+    border-radius: 8px;
+    padding: 24px 16px;
+}
+
+.request-withdraw-select .ant-select-selector {
+    background-color: #FFFFFF33 !important;
+}
+
+.request-withdraw-form-container .selector-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.request-withdraw-form-container  .bottom-information {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Inter;
+    font-size: 11px;
+    line-height: 24px;
+    text-align: right;
+    color: white;
+    margin-top: 24px;
+}
+
+
+.bottom-information .title {
+    font-weight: 400;
+    margin: 0px;
+}
+
+.bottom-information .value {
+    font-weight: 600;  
+    color: #66C61C !important;
+    margin: 0px;
+}
+

@@ -1,0 +1,76 @@
+.claim-button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    width: 135px;
+    height: 142px;
+    border-radius: 8px;
+    padding-top: 14px;
+    background: radial-gradient(112.75% 99.72% at 51.86% 83.05%, rgba(127, 153, 168, 0.72) 0%, rgba(81, 88, 87, 0.6624) 100%);
+    transition: transform 0.2s ease;
+}
+
+.claim-button-container:active {
+    transform: scale(0.99); 
+}
+
+.claim-button-container .header-section {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    padding:0px 14px;
+}
+
+.header-section .currency-name {
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 18px;
+    text-align: left;
+    margin: 0px;
+    color: white;
+}
+
+.claim-button-container .value-section {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding:0px 14px;
+}
+
+.value-section p {
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 28px;
+    text-align: left;
+    margin: 0px;
+    color: white;
+}
+
+
+.claim-button-container .button-section {
+    width: 100%;
+    height: 36px;
+    background: linear-gradient(88.85deg, #004D87 -9.61%, #E09B00 116.77%);
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+
+.button-section p {
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 18px;
+    text-align: center;
+    margin: 0px;
+    color: white;
+}
+

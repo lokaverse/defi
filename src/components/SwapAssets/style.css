@@ -60,44 +60,12 @@
     margin-bottom: 0px;
 }
 
-.swap-amoun-select .ant-select-selector {
-    background-color: #0000004D !important;
-    border: none !important;
-    color: white !important;
-    border-radius: 25px;
-    height: 40px !important;
-   
-}
-
-.swap-amoun-select.ant-select-open {
-    color: white !important;
-   
-}
-
-.swap-amoun-select.ant-select-single {
-    height: 40px !important;
-}
-
-.swap-amoun-select.ant-select-single .ant-select-selector {
-    padding: 10px 18px !important;
-}
-
-
-.swap-amoun-select .ant-select-arrow {
-    color: white !important;
-}
-
-
-.ant-select-dropdown {
-    background-color: #0000003D !important;
-}
-
-/* .swap-drop-down {
-    background-color: #0000004D !important;
-} */
-
-.ant-select-item-option-selected {
+.custom-currency-select-dropdown.ant-select-item-option-selected {
    background-color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.swap-asset-select .ant-select-selector {
+    background-color: #0000004D !important;
 }
 
 
