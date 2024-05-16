@@ -13,9 +13,9 @@ const assets = {
     currency: "MPTS",
     balance: "0.001276",
   },
-  powCKBTC: {
+  LOKBTC: {
     icon: PowCKBTC,
-    currency: "powckBTC",
+    currency: "LOKBTC",
     balance: "0.000576",
   },
 };

@@ -4,10 +4,11 @@ import { ConfigProvider } from "antd";
 
 import OpenLogin from "@toruslabs/openlogin";
 
-// import {
-//   lokaMinerAgentCreation,
-//   ckBTCAgentCreation,
-// } from "../service/canister";
+import {
+  lokaDefiAgentCreation,
+  ckBTCAgentCreation,
+  lokBTCAgentCreation,
+} from "../service/canister";
 
 import smallIcon from "../assets/icon/favico_loka.png";
 
@@ -61,6 +62,12 @@ export const AppProvider = ({ children }) => {
   const [openlogin, setSdk] = useState();
   const [lokaMinerAgent, setLokaMinerAgent] = useState();
   const [ckBTCAgent, setCkBTCAgent] = useState();
+  const [lokaDefiAgent, setLokaDefiAgent] = useState();
+  const [lokBTCAgent, setLokBTCAgent] = useState();
+  const [walletPrincipal, setWalletPrincipal] = useState();
+  const [lokBTCBalance, setLokBTCBalance] = useState();
+  const [ckBTCBalance, setCKBTCBalance] = useState();
+  const [staked, setStaked] = useState();
 
   useEffect(() => {
     async function initializeOpenlogin() {
@@ -68,10 +75,10 @@ export const AppProvider = ({ children }) => {
       await sdkInstance.init();
       setSdk(sdkInstance);
       if (sdkInstance?.privKey) {
-        // const minerAgent = lokaMinerAgentCreation(sdkInstance.privKey);
-        // const ckbtcAgent = ckBTCAgentCreation(sdkInstance.privKey);
-        // setLokaMinerAgent(minerAgent);
-        // setCkBTCAgent(ckbtcAgent);
+        const defiAgent = lokaDefiAgentCreation(sdkInstance.privKey);
+        const ckbtcAgent = ckBTCAgentCreation(sdkInstance.privKey);
+        setLokaDefiAgent(defiAgent);
+        setCkBTCAgent(ckbtcAgent);
       }
     }
     initializeOpenlogin();
@@ -85,6 +92,18 @@ export const AppProvider = ({ children }) => {
         setLokaMinerAgent,
         ckBTCAgent,
         setCkBTCAgent,
+        lokBTCAgent,
+        setLokBTCAgent,
+        lokaDefiAgent,
+        setLokaDefiAgent,
+        walletPrincipal,
+        setWalletPrincipal,
+        ckBTCBalance,
+        setCKBTCBalance,
+        setLokBTCBalance,
+        lokBTCBalance,
+        setStaked,
+        staked,
       }}
     >
       <Helmet>

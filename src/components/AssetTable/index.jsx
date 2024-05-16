@@ -1,29 +1,47 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Avatar } from "antd";
-
+import { AppContext } from "../../context";
 import "./style.css";
 
-const assets = {
-  powckBTC: {
-    name: "powckBTC",
-    val: "12.004",
-    backgroundColor: "#3abde2",
-  },
-  MPTS: {
-    name: "MPTS",
-    val: "0.000576",
-    backgroundColor: "#FFD6AE",
-  },
-  LPTS: {
-    name: "LPTS",
-    val: "0.002856",
-    backgroundColor: "#A6EF67",
-  },
-};
-
 const AssetTable = ({ showApr, listAsset }) => {
+  const {
+    loginInstance,
+    setLokaMinerAgent,
+    setCkBTCAgent,
+    setUserInfo,
+    walletPrincipal,
+    setLokaDefiAgent,
+    setLokBTCAgent,
+    setWalletPrincipal,
+    lokaDefiAgent,
+    ckBTCBalance,
+    staked,
+    lokBTCBalance,
+  } = useContext(AppContext);
+
+  const assets = {
+    LOKBTC: {
+      name: "LOKBTC",
+      val: lokBTCBalance
+        ? parseFloat(lokBTCBalance / 10 ** 8)
+            .toFixed(5)
+            .toLocaleString()
+        : "0",
+      backgroundColor: "#3abde2",
+    },
+    MPTS: {
+      name: "MPTS",
+      val: "0.000xxx",
+      backgroundColor: "#FFD6AE",
+    },
+    LPTS: {
+      name: "LPTS",
+      val: "0.00xxx",
+      backgroundColor: "#A6EF67",
+    },
+  };
   const getIcon = (asset) => {
-    if (asset === "powckBTC") {
+    if (asset === "LOKBTC") {
     }
 
     return;
@@ -39,7 +57,7 @@ const AssetTable = ({ showApr, listAsset }) => {
           <div className="loka-apr">
             <div className="apr-background">
               <p>
-                LOKA APR <span className="percentage-apr">12%</span>
+                LOKA APR <span className="percentage-apr">xx%</span>
               </p>
             </div>
           </div>

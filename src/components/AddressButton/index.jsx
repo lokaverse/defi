@@ -1,7 +1,12 @@
 import React, { useState, useContext } from "react";
 import clsx from "clsx";
 import { useMediaQuery } from "react-responsive";
-
+import {
+  lokaDefiAgentCreation,
+  ckBTCAgentCreation,
+  lokBTCAgentCreation,
+  getUserPrincipal,
+} from "../../service/canister";
 import Icon, {
   CheckOutlined,
   CloseOutlined,
@@ -16,8 +21,21 @@ import "./style.css";
 
 const AddressButton = () => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
-  const { loginInstance, setLokaMinerAgent, setCkBTCAgent, setUserInfo } =
-    useContext(AppContext);
+  const {
+    loginInstance,
+    setLokaMinerAgent,
+    setCkBTCAgent,
+    setUserInfo,
+    walletPrincipal,
+    setLokaDefiAgent,
+    setLokBTCAgent,
+    setWalletPrincipal,
+    setCKBTCBalance,
+    setStaked,
+    setLokBTCBalance,
+    lokBTCBalance,
+    ckBTCBalance,
+  } = useContext(AppContext);
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -27,6 +45,30 @@ const AddressButton = () => {
       setShowModal(false);
     }
   };
+
+  function copyAddress() {
+    const textToCopy = walletPrincipal;
+    navigator.clipboard
+      .writeText(textToCopy)
+      .then(() => {
+        alert("Wallet address copied to clipboard");
+      })
+      .catch((err) => {
+        console.error("Error in copying text: ", err);
+      });
+  }
+
+  function truncateString(str, num) {
+    if (!str) return "";
+    if (str.length <= num) {
+      return str;
+    }
+    const frontChars = Math.ceil(num / 2);
+    const backChars = Math.floor(num / 2);
+    return (
+      str.substr(0, frontChars) + "..." + str.substr(str.length - backChars)
+    );
+  }
 
   async function handleLogin() {
     setLoading(true);
@@ -40,15 +82,27 @@ const AddressButton = () => {
         throw new Error("failed login");
       }
 
-      // const lokaMinerAgent = lokaMinerAgentCreation(privKey);
-      // const ckBTCAgent = ckBTCAgentCreation(privKey);
+      const userPrincipal = getUserPrincipal(loginInstance.privKey);
 
+      const lokaDefiAgent = lokaDefiAgentCreation(privKey);
+      const ckBTCAgent = ckBTCAgentCreation(privKey);
+      setLokaDefiAgent(lokaDefiAgent);
+      setCkBTCAgent(ckBTCAgent);
+      setWalletPrincipal(userPrincipal.toString());
+      console.log(userPrincipal.toString(), "<<<<<<<<<< up");
+
+      const userData = await lokaDefiAgent.getUserData();
+      setCKBTCBalance(Number(userData.ckbtc));
+      setLokBTCBalance(Number(userData.lokbtc));
+      setStaked(Number(userData.staked));
+      console.log(userData, "<<<<<<<<<<<< user data");
       // setLokaMinerAgent(lokaMinerAgent);
       // setCkBTCAgent(ckBTCAgent);
       setLoading(false);
       setShowModal(false);
       setIsOpen(false);
     } catch (error) {
+      console.log(error, "<M<<<<< err");
       setLoading(false);
       setShowModal(false);
       message.error("login failed");
@@ -61,6 +115,9 @@ const AddressButton = () => {
     await loginInstance.logout();
     setLokaMinerAgent();
     setCkBTCAgent();
+    setLokBTCAgent(false);
+    setLokaDefiAgent(false);
+    setWalletPrincipal(false);
     // setUserInfo();
     setLoading(false);
     setIsOpen(false);
@@ -88,7 +145,12 @@ const AddressButton = () => {
                 fontSize: isMobile ? 8 : 12,
               }}
             >
-              12.004 ckBTC
+              {ckBTCBalance
+                ? parseFloat(ckBTCBalance / 10 ** 8)
+                    .toFixed(5)
+                    .toLocaleString()
+                : "0"}{" "}
+              ckBTC
             </p>
             <div
               className="custom-switch"
@@ -100,11 +162,16 @@ const AddressButton = () => {
               <div className={clsx("top-section", { isOpen })}>
                 <p
                   className="wallet-address"
+                  onClick={() => {
+                    copyAddress();
+                  }}
                   style={{
                     fontSize: isMobile ? 8 : 12,
                   }}
                 >
-                  00...80DR
+                  {walletPrincipal
+                    ? truncateString(walletPrincipal, 8)
+                    : "disconnected"}
                 </p>
                 <div
                   className="icon-container"
