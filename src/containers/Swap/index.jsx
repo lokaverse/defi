@@ -44,7 +44,7 @@ const Swap = () => {
 
   return (
     <main className="swap-container">
-      <AssetTable showApr={false} listAsset={["MPTS", "LPTS"]} />
+      <AssetTable showApr={false} showedAssets={["MPTS", "LPTS"]} />
       <div className="swap-header-title">
         <Icon component={SwapIcon} />
         <p>Swap</p>

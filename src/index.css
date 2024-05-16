@@ -46,9 +46,14 @@ code {
  
 }
 
-.custom-currency-select.ant-select-open {
+.custom-currency-select .ant-select-open {
   color: white !important;
- 
+}
+
+
+
+.custom-currency-select .ant-select-selection-item {
+  color: white !important;
 }
 
 .custom-currency-select.ant-select-single {
@@ -57,13 +62,13 @@ code {
 
 .custom-currency-select.ant-select-single .ant-select-selector {
   padding: 10px 18px !important;
+  
 }
-
 
 .custom-currency-select .ant-select-arrow {
   color: white !important;
 }
 
-.custom-currency-select-dropdown {
-  background-color: #0000003D !important;
+.ant-select-item-option-content {
+  color: white !important;
 }

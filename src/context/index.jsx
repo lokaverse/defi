@@ -10,6 +10,7 @@ import {
   lokBTCAgentCreation,
 } from "../service/canister";
 
+import { normalizeUserBalance } from "../helper/number";
 import smallIcon from "../assets/icon/favico_loka.png";
 
 export const AppContext = createContext({});
@@ -55,19 +56,33 @@ const themeProvider = {
       itemHoverColor: "#134E48",
       itemColor: "#134E48",
     },
+    Select: {
+      optionSelectedBg: "rgba(255, 255, 255, 0.2)",
+      optionSelectedColor: "white",
+    },
   },
+};
+
+const defaultUserBalance = {
+  ckbtc: 0,
+  lokbtc: 0,
+  staked: 0,
 };
 
 export const AppProvider = ({ children }) => {
   const [openlogin, setSdk] = useState();
-  const [lokaMinerAgent, setLokaMinerAgent] = useState();
   const [ckBTCAgent, setCkBTCAgent] = useState();
   const [lokaDefiAgent, setLokaDefiAgent] = useState();
   const [lokBTCAgent, setLokBTCAgent] = useState();
-  const [walletPrincipal, setWalletPrincipal] = useState();
-  const [lokBTCBalance, setLokBTCBalance] = useState();
-  const [ckBTCBalance, setCKBTCBalance] = useState();
-  const [staked, setStaked] = useState();
+  const [userBalance, setUserBalance] = useState(defaultUserBalance);
+  const [getBalanceLoading, setGetBalanceLoading] = useState(false);
+
+  const getUserBalance = async () => {
+    setGetBalanceLoading(true);
+    const userData = await lokaDefiAgent.getUserData();
+    setUserBalance(normalizeUserBalance(userData));
+    setGetBalanceLoading(false);
+  };
 
   useEffect(() => {
     async function initializeOpenlogin() {
@@ -84,26 +99,26 @@ export const AppProvider = ({ children }) => {
     initializeOpenlogin();
   }, []);
 
+  useEffect(() => {
+    if (lokaDefiAgent) {
+      getUserBalance();
+    }
+  }, [lokaDefiAgent]);
+
   return (
     <AppContext.Provider
       value={{
         loginInstance: openlogin,
-        lokaMinerAgent,
-        setLokaMinerAgent,
         ckBTCAgent,
         setCkBTCAgent,
         lokBTCAgent,
         setLokBTCAgent,
         lokaDefiAgent,
         setLokaDefiAgent,
-        walletPrincipal,
-        setWalletPrincipal,
-        ckBTCBalance,
-        setCKBTCBalance,
-        setLokBTCBalance,
-        lokBTCBalance,
-        setStaked,
-        staked,
+        userBalance,
+        setUserBalance,
+        getUserBalance,
+        getBalanceLoading,
       }}
     >
       <Helmet>

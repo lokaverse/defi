@@ -1,74 +1,51 @@
 import React, { useState, useContext } from "react";
 import clsx from "clsx";
 import { useMediaQuery } from "react-responsive";
-import {
-  lokaDefiAgentCreation,
-  ckBTCAgentCreation,
-  lokBTCAgentCreation,
-  getUserPrincipal,
-} from "../../service/canister";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { message, Button, Modal } from "antd";
+
 import Icon, {
-  CheckOutlined,
+  LoadingOutlined,
   CloseOutlined,
   GoogleOutlined,
 } from "@ant-design/icons";
-import { Switch, message, Button, Modal } from "antd";
+
+import {
+  lokaDefiAgentCreation,
+  ckBTCAgentCreation,
+} from "../../service/canister";
+
+import { shortenWalletAddress } from "../../helper/string";
 
 import { AppContext } from "../../context";
 import { LogoutIcon, ICPIcon } from "../Icons";
 
 import "./style.css";
 
-const AddressButton = () => {
+const AddressButton = ({ walletAddres }) => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
   const {
     loginInstance,
-    setLokaMinerAgent,
     setCkBTCAgent,
-    setUserInfo,
-    walletPrincipal,
     setLokaDefiAgent,
     setLokBTCAgent,
-    setWalletPrincipal,
-    setCKBTCBalance,
-    setStaked,
-    setLokBTCBalance,
-    lokBTCBalance,
-    ckBTCBalance,
+    userBalance,
+    getBalanceLoading,
+    setUserBalance,
   } = useContext(AppContext);
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
+
+  const handleCopy = () => {
+    message.success("Wallet address copied");
+  };
 
   const handleCloseModal = () => {
     if (!loading) {
       setShowModal(false);
     }
   };
-
-  function copyAddress() {
-    const textToCopy = walletPrincipal;
-    navigator.clipboard
-      .writeText(textToCopy)
-      .then(() => {
-        alert("Wallet address copied to clipboard");
-      })
-      .catch((err) => {
-        console.error("Error in copying text: ", err);
-      });
-  }
-
-  function truncateString(str, num) {
-    if (!str) return "";
-    if (str.length <= num) {
-      return str;
-    }
-    const frontChars = Math.ceil(num / 2);
-    const backChars = Math.floor(num / 2);
-    return (
-      str.substr(0, frontChars) + "..." + str.substr(str.length - backChars)
-    );
-  }
 
   async function handleLogin() {
     setLoading(true);
@@ -82,27 +59,16 @@ const AddressButton = () => {
         throw new Error("failed login");
       }
 
-      const userPrincipal = getUserPrincipal(loginInstance.privKey);
-
       const lokaDefiAgent = lokaDefiAgentCreation(privKey);
       const ckBTCAgent = ckBTCAgentCreation(privKey);
       setLokaDefiAgent(lokaDefiAgent);
       setCkBTCAgent(ckBTCAgent);
-      setWalletPrincipal(userPrincipal.toString());
-      console.log(userPrincipal.toString(), "<<<<<<<<<< up");
 
-      const userData = await lokaDefiAgent.getUserData();
-      setCKBTCBalance(Number(userData.ckbtc));
-      setLokBTCBalance(Number(userData.lokbtc));
-      setStaked(Number(userData.staked));
-      console.log(userData, "<<<<<<<<<<<< user data");
-      // setLokaMinerAgent(lokaMinerAgent);
-      // setCkBTCAgent(ckBTCAgent);
       setLoading(false);
       setShowModal(false);
       setIsOpen(false);
     } catch (error) {
-      console.log(error, "<M<<<<< err");
+      console.log(error, "error handle login");
       setLoading(false);
       setShowModal(false);
       message.error("login failed");
@@ -113,12 +79,14 @@ const AddressButton = () => {
   const handleLogout = async () => {
     setLoading(true);
     await loginInstance.logout();
-    setLokaMinerAgent();
     setCkBTCAgent();
-    setLokBTCAgent(false);
-    setLokaDefiAgent(false);
-    setWalletPrincipal(false);
-    // setUserInfo();
+    setLokBTCAgent();
+    setLokaDefiAgent();
+    setUserBalance({
+      ckbtc: 0,
+      lokbtc: 0,
+      staked: 0,
+    });
     setLoading(false);
     setIsOpen(false);
   };
@@ -139,19 +107,25 @@ const AddressButton = () => {
               gap: isMobile ? 8 : 16,
             }}
           >
-            <p
-              className="ckbtc-amount"
-              style={{
-                fontSize: isMobile ? 8 : 12,
-              }}
-            >
-              {ckBTCBalance
-                ? parseFloat(ckBTCBalance / 10 ** 8)
-                    .toFixed(5)
-                    .toLocaleString()
-                : "0"}{" "}
-              ckBTC
-            </p>
+            {getBalanceLoading ? (
+              <LoadingOutlined
+                spin
+                style={{
+                  color: "white",
+                  fontSize: isMobile ? 8 : 12,
+                }}
+              />
+            ) : (
+              <p
+                className="ckbtc-amount"
+                style={{
+                  fontSize: isMobile ? 8 : 12,
+                }}
+              >
+                {`${userBalance.ckbtc} ckBTC`}
+              </p>
+            )}
+
             <div
               className="custom-switch"
               style={{
@@ -160,19 +134,19 @@ const AddressButton = () => {
               }}
             >
               <div className={clsx("top-section", { isOpen })}>
-                <p
-                  className="wallet-address"
-                  onClick={() => {
-                    copyAddress();
-                  }}
-                  style={{
-                    fontSize: isMobile ? 8 : 12,
-                  }}
+                <CopyToClipboard
+                  text={shortenWalletAddress(walletAddres)}
+                  onCopy={handleCopy}
                 >
-                  {walletPrincipal
-                    ? truncateString(walletPrincipal, 8)
-                    : "disconnected"}
-                </p>
+                  <p
+                    className="wallet-address"
+                    style={{
+                      fontSize: isMobile ? 8 : 12,
+                    }}
+                  >
+                    {shortenWalletAddress(walletAddres)}
+                  </p>
+                </CopyToClipboard>
                 <div
                   className="icon-container"
                   style={{
@@ -184,6 +158,7 @@ const AddressButton = () => {
                   <Icon component={ICPIcon} />
                 </div>
               </div>
+
               {isOpen && (
                 <div
                   className="bottom-section"

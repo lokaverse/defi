@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext, useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Layout, Menu, theme, Row, Col } from "antd";
 import { Outlet } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
+
+import { AppContext } from "../context";
+import { getUserPrincipal } from "../service/canister";
 
 import BottomNavigation from "./components/BottomNavigation";
 import AddressButton from "../components/AddressButton";
@@ -33,14 +36,19 @@ const menuItem = [
 ];
 
 const LayoutContainers = () => {
+  const { loginInstance, lokaMinerAgent } = useContext(AppContext);
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const isMobile = useMediaQuery({ maxWidth: 767 });
   const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
 
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
+  const isWalletConnected = useMemo(() => {
+    return loginInstance && loginInstance.privKey;
+  }, [loginInstance, lokaMinerAgent]);
+
+  const userPrincipal = loginInstance?.privKey
+    ? getUserPrincipal(loginInstance.privKey)
+    : "";
 
   useEffect(() => {
     const handleResize = () => {
@@ -103,7 +111,7 @@ const LayoutContainers = () => {
             lg={{ span: 9 }}
             style={{ display: "flex", justifyContent: "flex-end" }}
           >
-            <AddressButton />
+            <AddressButton walletAddres={userPrincipal.toString()} />
           </Col>
         </Row>
       </Header>

@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useMemo, useContext } from "react";
 import { Button, Tabs } from "antd";
 import Icon from "@ant-design/icons";
 import clsx from "clsx";
+
+import { AppContext } from "../../context";
 
 import AssetTable from "../../components/AssetTable";
 import { RedeemIcon, ClockCircle, CheckCircle } from "../../components/Icons";
@@ -11,17 +13,6 @@ import WithdrawlClaim from "./components/WithdrawlClaim";
 import ClaimSection from "./components/ClaimSection";
 
 import "./style.css";
-
-const assets = {
-  MPTS: {
-    currency: "MPTS",
-    balance: "0.001276",
-  },
-  LPTS: {
-    currency: "LPTS",
-    balance: "0.000576",
-  },
-};
 
 const Redeem = () => {
   const [activeMenu, setActiveMenu] = useState("withdrawl");
@@ -41,7 +32,7 @@ const Redeem = () => {
 
   return (
     <main className="redeem-container">
-      <AssetTable showApr={false} listAsset={["powckBTC", "LPTS"]} />
+      <AssetTable showApr={false} showedAssets={["lokBTC", "MPTS"]} />
       <div className="redeem-header-title">
         <Icon component={RedeemIcon} />
         <p>Redeem</p>

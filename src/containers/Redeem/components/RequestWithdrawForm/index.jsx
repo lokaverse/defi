@@ -4,18 +4,22 @@ import { Select, Input, Button } from "antd";
 import "./styles.css";
 
 const assets = {
-  LOKBTC: {
-    currency: "LOKBTC",
+  ckBTC: {
+    currency: "ckBTC",
     balance: "0.001276",
   },
   MPTS: {
     currency: "MPTS",
     balance: "0.000576",
   },
+  LPTS: {
+    currency: "LPTS",
+    balance: "0.000576",
+  },
 };
 
 const RequestWithdrawForm = () => {
-  const [selectedAsset, setSelectedAsset] = useState("LOKBTC");
+  const [selectedAsset, setSelectedAsset] = useState("ckBTC");
 
   return (
     <div className="request-withdraw-form-container">
@@ -28,14 +32,12 @@ const RequestWithdrawForm = () => {
             value: opt,
             label: opt,
           }))}
-          dropdownRender={(menu) => (
-            <div className="custom-currency-select-dropdown">{menu}</div>
-          )}
+          dropdownStyle={{ backgroundColor: "#000000CC", color: "white" }}
         />
 
         <Input
           className="stake-amount"
-          placeholder="ckBTC amount"
+          placeholder="amount"
           suffix={<Button className="stake-amount-max-button">MAX</Button>}
         />
       </div>
@@ -44,10 +46,12 @@ const RequestWithdrawForm = () => {
         Request withdrawal
       </Button>
 
-      <div className="bottom-information">
-        <p className="title">Processing time</p>
-        <p className="value">24 Hour</p>
-      </div>
+      {selectedAsset === "ckBTC" && (
+        <div className="bottom-information">
+          <p className="title">Processing time</p>
+          <p className="value">24 Hour</p>
+        </div>
+      )}
     </div>
   );
 };

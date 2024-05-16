@@ -1,51 +1,37 @@
-import React, { useContext } from "react";
-import { Avatar } from "antd";
+import React, { useContext, useMemo } from "react";
+
+import { LoadingOutlined } from "@ant-design/icons";
+
 import { AppContext } from "../../context";
+
+import MPTSIcon from "../../assets/icon/mpts-icon.png";
+import LPTSIcon from "../../assets/icon/lpts-icon.png";
+import LOKBTCIcon from "../../assets/icon/lokbtc-icon.png";
+
 import "./style.css";
 
-const AssetTable = ({ showApr, listAsset }) => {
-  const {
-    loginInstance,
-    setLokaMinerAgent,
-    setCkBTCAgent,
-    setUserInfo,
-    walletPrincipal,
-    setLokaDefiAgent,
-    setLokBTCAgent,
-    setWalletPrincipal,
-    lokaDefiAgent,
-    ckBTCBalance,
-    staked,
-    lokBTCBalance,
-  } = useContext(AppContext);
+const AssetTable = ({ showApr, showedAssets }) => {
+  const { userBalance, getBalanceLoading } = useContext(AppContext);
 
-  const assets = {
-    LOKBTC: {
-      name: "LOKBTC",
-      val: lokBTCBalance
-        ? parseFloat(lokBTCBalance / 10 ** 8)
-            .toFixed(5)
-            .toLocaleString()
-        : "0",
-      backgroundColor: "#3abde2",
-    },
-    MPTS: {
-      name: "MPTS",
-      val: "0.000xxx",
-      backgroundColor: "#FFD6AE",
-    },
-    LPTS: {
-      name: "LPTS",
-      val: "0.00xxx",
-      backgroundColor: "#A6EF67",
-    },
-  };
-  const getIcon = (asset) => {
-    if (asset === "LOKBTC") {
-    }
-
-    return;
-  };
+  const listAsset = useMemo(() => {
+    return {
+      lokBTC: {
+        code: "lokBTC",
+        icon: LOKBTCIcon,
+        balance: userBalance.lokbtc,
+      },
+      MPTS: {
+        code: "MPTS",
+        icon: MPTSIcon,
+        balance: 0,
+      },
+      LPTS: {
+        code: "LPTS",
+        icon: LPTSIcon,
+        balance: 0,
+      },
+    };
+  }, [userBalance]);
 
   return (
     <section className="asset-table-contianer">
@@ -65,25 +51,20 @@ const AssetTable = ({ showApr, listAsset }) => {
       </div>
 
       <div className="asset-table-item-list">
-        {listAsset.map((asset) => {
-          if (!assets[asset]) return null;
-          const dataAsset = assets[asset];
+        {(Object.values(listAsset) || []).map((asset) => {
+          if (!showedAssets.includes(asset.code)) return null;
           return (
             <div className="asset-item">
-              <div className="asset-name">
-                <Avatar
-                  size="small"
-                  style={{
-                    backgroundColor: dataAsset.backgroundColor,
-                    color: "#000000",
-                    marginRight: "10px",
-                  }}
-                >
-                  {dataAsset.name[0].toUpperCase()}
-                </Avatar>
-                <span>{dataAsset.name}</span>
+              <div key={asset.code} className="asset-code">
+                <img src={asset.icon} alt={asset.code} />
+                <span>{asset.code}</span>
               </div>
-              <span>{dataAsset.val}</span>
+
+              {getBalanceLoading ? (
+                <LoadingOutlined spin />
+              ) : (
+                <span>{asset.balance}</span>
+              )}
             </div>
           );
         })}

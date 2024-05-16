@@ -1,5 +1,5 @@
 import React from "react";
-import { Select } from "antd";
+import { Select, Input } from "antd";
 
 import "./style.css";
 
@@ -20,9 +20,7 @@ const SwapAsset = ({ type, value, asset, swapOption, onSwap }) => {
             value={value}
             onChange={(val) => onSwap(type, val)}
             options={swapOption.map((opt) => ({ value: opt, label: opt }))}
-            dropdownRender={(menu) => (
-              <div className="custom-currency-select-dropdown">{menu}</div>
-            )}
+            dropdownStyle={{ backgroundColor: "#000000CC", color: "white" }}
           />
         </div>
 
