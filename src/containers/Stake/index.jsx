@@ -9,7 +9,7 @@ import "./style.css";
 const Stake = () => {
   return (
     <main className="stake-container">
-      <AssetTable showApr listAsset={["powckBTC", "MPTS", "LPTS"]} />
+      <AssetTable showApr listAsset={["LOKBTC", "MPTS", "LPTS"]} />
       <StakeCkBTC />
       <Faq />
     </main>

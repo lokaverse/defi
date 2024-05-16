@@ -4,8 +4,8 @@ import { Select, Input, Button } from "antd";
 import "./styles.css";
 
 const assets = {
-  powckBTC: {
-    currency: "powckBTC",
+  LOKBTC: {
+    currency: "LOKBTC",
     balance: "0.001276",
   },
   MPTS: {
@@ -15,7 +15,7 @@ const assets = {
 };
 
 const RequestWithdrawForm = () => {
-  const [selectedAsset, setSelectedAsset] = useState("powckBTC");
+  const [selectedAsset, setSelectedAsset] = useState("LOKBTC");
 
   return (
     <div className="request-withdraw-form-container">
