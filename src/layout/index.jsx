@@ -9,6 +9,7 @@ import { getUserPrincipal } from "../service/canister";
 
 import BottomNavigation from "./components/BottomNavigation";
 import AddressButton from "../components/AddressButton";
+import BlockedScreen from "../components/BlockedScreen";
 
 import LokaLogo from "../assets/image/loka_logo.png";
 
@@ -43,8 +44,8 @@ const LayoutContainers = () => {
   const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
 
   const isWalletConnected = useMemo(() => {
-    return loginInstance && loginInstance.privKey;
-  }, [loginInstance, lokaMinerAgent]);
+    return !!loginInstance?.privKey;
+  }, [loginInstance?.privKey, lokaMinerAgent]);
 
   const userPrincipal = loginInstance?.privKey
     ? getUserPrincipal(loginInstance.privKey)
@@ -125,7 +126,7 @@ const LayoutContainers = () => {
         >
           <Row justify={"center"}>
             <Col xs={{ span: 24 }} md={{ span: 12 }} lg={{ span: 6 }}>
-              <Outlet />
+              {isWalletConnected ? <Outlet /> : <BlockedScreen />}
             </Col>
           </Row>
         </div>
