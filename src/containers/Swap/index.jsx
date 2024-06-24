@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Button } from "antd";
 import Icon from "@ant-design/icons";
+
+import { AppContext } from "../..//context";
 
 import AssetTable from "../../components/AssetTable";
 import SwapAsset from "../../components/SwapAssets";
@@ -8,20 +10,21 @@ import { SwapIcon, SwapChange } from "../../components/Icons";
 
 import "./style.css";
 
-const assets = {
-  MPTS: {
-    currency: "MPTS",
-    balance: "0.001276",
-  },
-  LPTS: {
-    currency: "LPTS",
-    balance: "0.000576",
-  },
-};
-
 const Swap = () => {
+  const { userBalance, getUserBalance, lokaDefiAgent } = useContext(AppContext);
   const [base, setBase] = useState("MPTS");
   const [counter, setCounter] = useState("LPTS");
+
+  const assets = {
+    MPTS: {
+      currency: "MPTS",
+      balance: userBalance.mpts,
+    },
+    LPTS: {
+      currency: "LPTS",
+      balance: userBalance.lpts,
+    },
+  };
 
   const handleSwapChange = (type, val) => {
     if (type === "base") {

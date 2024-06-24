@@ -62,6 +62,11 @@
     cursor: pointer;
 }
 
+.button-section.isLoading {
+    background: radial-gradient(112.75% 99.72% at 51.86% 83.05%, rgba(127, 153, 168, 0.72) 0%, rgba(81, 88, 87, 0.6624) 100%) !important
+
+}
+
 
 
 .button-section p {
@@ -73,4 +78,21 @@
     margin: 0px;
     color: white;
 }
+
+.button-section .anticon-spin {
+    color: white !important;
+    margin-right: 8px;
+}
+
+.stake-amount-skeleton {
+    width: 80px !important;
+    height: 26px !important;
+    --antd-wave-shadow-color: rgba(255, 255, 255, 0.3);
+}
+
+
+.stake-amount-skeleton .ant-skeleton-button {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
 

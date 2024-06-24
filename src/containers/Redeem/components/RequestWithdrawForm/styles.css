@@ -40,3 +40,16 @@
     margin: 0px;
 }
 
+.withdraw-input-section {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.withdrwaw-error-text {
+    font-size: 10px;
+    color: red ;
+    position: absolute;
+    top: 80px;
+}
+

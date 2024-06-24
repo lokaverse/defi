@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import AppProvider from "./context";
 import {
   createBrowserRouter,
@@ -8,9 +9,11 @@ import { QueryClient, QueryClientProvider } from "react-query";
 
 import Layout from "./layout";
 import Stake from "./containers/Stake";
-import Swap from "./containers/Swap";
-import Redeem from "./containers/Redeem";
-import History from "./containers/History";
+import ScreenLoading from "./components/ScreenLoading";
+
+const Swap = lazy(() => import("./containers/Swap"));
+const Redeem = lazy(() => import("./containers/Redeem"));
+const History = lazy(() => import("./containers/History"));
 
 const queryClient = new QueryClient();
 
@@ -28,15 +31,27 @@ const router = createBrowserRouter([
       },
       {
         path: "swap",
-        element: <Swap />,
+        element: (
+          <Suspense fallback={<ScreenLoading />}>
+            <Swap />
+          </Suspense>
+        ),
       },
       {
         path: "redeem",
-        element: <Redeem />,
+        element: (
+          <Suspense fallback={<ScreenLoading />}>
+            <Redeem />
+          </Suspense>
+        ),
       },
       {
         path: "history",
-        element: <History />,
+        element: (
+          <Suspense fallback={<ScreenLoading />}>
+            <History />
+          </Suspense>
+        ),
       },
     ],
   },

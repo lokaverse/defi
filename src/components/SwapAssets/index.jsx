@@ -14,7 +14,7 @@ const SwapAsset = ({ type, value, asset, swapOption, onSwap }) => {
       <p className="swap-type-title">{typeTittleMapping[type]}</p>
       <div className="swap-section">
         <div className="top">
-          <p className="swap-amount">0.0003</p>
+          <p className="swap-amount">0</p>
           <Select
             className="swap-asset-select custom-currency-select"
             value={value}

@@ -23,12 +23,12 @@ const AssetTable = ({ showApr, showedAssets }) => {
       MPTS: {
         code: "MPTS",
         icon: MPTSIcon,
-        balance: 0,
+        balance: userBalance.mpts,
       },
       LPTS: {
         code: "LPTS",
         icon: LPTSIcon,
-        balance: 0,
+        balance: userBalance.lpts,
       },
     };
   }, [userBalance]);

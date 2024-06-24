@@ -3,6 +3,16 @@ export const idlFactory = ({ IDL }) => {
     transferFailed: IDL.Text,
     success: IDL.Nat,
   });
+  const TransferResult = IDL.Variant({
+    error: IDL.Text,
+    success: IDL.Nat,
+  });
+  const TransferRes = IDL.Variant({ error: IDL.Text, success: IDL.Nat });
+  const Claimable = IDL.Record({
+    id: IDL.Nat,
+    time: IDL.Int,
+    amount: IDL.Nat,
+  });
   const HttpHeader = IDL.Record({ value: IDL.Text, name: IDL.Text });
   const HttpResponsePayload = IDL.Record({
     status: IDL.Nat,
@@ -18,10 +28,15 @@ export const idlFactory = ({ IDL }) => {
     body: IDL.Vec(IDL.Nat8),
     headers: IDL.Vec(HttpHeader),
   });
-  const TransferRes = IDL.Variant({ error: IDL.Text, success: IDL.Nat });
-  const Miner = IDL.Service({
+  return IDL.Service({
     addLiquidity: IDL.Func([IDL.Nat], [AddLiquidityResult], []),
+    burnTestCKBTC: IDL.Func([], [TransferResult], []),
+    claimCKBTC: IDL.Func([IDL.Nat], [TransferRes], []),
+    claimLPTS: IDL.Func([], [TransferRes], []),
+    claimMPTS: IDL.Func([], [TransferRes], []),
     clearData: IDL.Func([], [], []),
+    distributeLPTS: IDL.Func([IDL.Nat], [], []),
+    distributeMPTS: IDL.Func([IDL.Nat, IDL.Text], [], []),
     fetchUserById: IDL.Func([IDL.Nat], [], ["query"]),
     fetchUserByPrincipal: IDL.Func([IDL.Principal], [], ["query"]),
     getCKBTCBalance: IDL.Func([], [IDL.Nat], []),
@@ -34,19 +49,28 @@ export const idlFactory = ({ IDL }) => {
       [
         IDL.Record({
           staked: IDL.Nat,
+          ckBTCClaimList: IDL.Vec(IDL.Tuple(IDL.Nat, Claimable)),
           ckbtc: IDL.Nat,
+          lpts: IDL.Nat,
+          mpts: IDL.Nat,
           lokbtc: IDL.Nat,
         }),
       ],
       []
     ),
+    init: IDL.Func([], [IDL.Nat], []),
     isNotPaused: IDL.Func([], [IDL.Bool], ["query"]),
     pauseCanister: IDL.Func([IDL.Bool], [IDL.Bool], []),
+    requestRedeem: IDL.Func(
+      [IDL.Nat],
+      [IDL.Variant({ error: IDL.Text, success: Claimable })],
+      []
+    ),
     routine24Force: IDL.Func([], [IDL.Text], []),
     setCKBTCPool: IDL.Func([IDL.Text], [IDL.Principal], []),
     setJwalletVault: IDL.Func([IDL.Text], [IDL.Text], []),
     setLOKBTC: IDL.Func([IDL.Text], [], []),
-    startScheduler: IDL.Func([], [IDL.Nat], []),
+    setPoolCanister: IDL.Func([IDL.Text], [], []),
     transform: IDL.Func(
       [TransformArgs],
       [CanisterHttpResponsePayload],
@@ -54,10 +78,8 @@ export const idlFactory = ({ IDL }) => {
     ),
     updateckBTCBalance: IDL.Func([], [], []),
     whoCall: IDL.Func([], [IDL.Text], ["query"]),
-    withdrawCKBTC: IDL.Func([IDL.Nat], [TransferRes], []),
   });
-  return Miner;
 };
 export const init = ({ IDL }) => {
-  return [IDL.Record({ admin: IDL.Principal })];
+  return [];
 };

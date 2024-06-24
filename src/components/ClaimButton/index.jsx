@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Skeleton } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
+import clsx from "clsx";
+
+import { AppContext } from "../../context";
 
 import "./style.css";
 
-const ClaimButton = ({ icon, name, value, onClaim }) => {
+const ClaimButton = ({ icon, name, value, onClaim, isLoading }) => {
+  const { getBalanceLoading } = useContext(AppContext);
   const handleClick = (e) => {
     e.stopPropagation();
     onClaim();
@@ -20,9 +26,17 @@ const ClaimButton = ({ icon, name, value, onClaim }) => {
         <p className="currency-name">{name}</p>
       </div>
       <div className="value-section">
-        <p>{value}</p>
+        {getBalanceLoading ? (
+          <Skeleton.Button active className="stake-amount-skeleton" />
+        ) : (
+          <p>{value}</p>
+        )}
       </div>
-      <div onClick={handleClick} className="button-section">
+      <div
+        onClick={handleClick}
+        className={clsx("button-section", { isLoading })}
+      >
+        {isLoading && <LoadingOutlined />}
         <p>Claim</p>
       </div>
     </div>
