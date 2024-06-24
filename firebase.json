@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site":"defi-loka-staging",
     "public": "build",
     "ignore": [
       "firebase.json",
