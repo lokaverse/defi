@@ -134,10 +134,7 @@ const AddressButton = ({ walletAddres }) => {
               }}
             >
               <div className={clsx("top-section", { isOpen })}>
-                <CopyToClipboard
-                  text={shortenWalletAddress(walletAddres)}
-                  onCopy={handleCopy}
-                >
+                <CopyToClipboard text={walletAddres} onCopy={handleCopy}>
                   <p
                     className="wallet-address"
                     style={{

@@ -25,7 +25,7 @@ const SwapAsset = ({ type, value, asset, swapOption, onSwap }) => {
         </div>
 
         <div className="bottom">
-          <p>$450.34</p>
+          <p>$0</p>
           <p>{`Balance: ${asset.balance}`}</p>
         </div>
       </div>

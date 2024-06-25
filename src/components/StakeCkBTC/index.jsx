@@ -145,7 +145,7 @@ const StakeCkBTC = ({ ckBTCBalance, stakedBalance }) => {
 
         <div className="stake-receive-information">
           <span>You will receive</span>
-          <span>0.0005 lokBTC</span>
+          <span>{`${value || 0} lokBTC`}</span>
         </div>
       </div>
     </section>
