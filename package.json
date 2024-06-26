@@ -45,6 +45,7 @@
     "build": "env-cmd -f .env react-app-rewired build",
     "build:prod": "env-cmd -f .env.prod react-app-rewired build",
     "test": "react-scripts test",
+    "build-vercel": "react-app-rewired build",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
