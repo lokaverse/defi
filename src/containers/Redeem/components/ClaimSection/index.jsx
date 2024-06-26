@@ -21,12 +21,12 @@ const ClaimSection = () => {
       MPTS: {
         code: "MPTS",
         icon: MPTSIcon,
-        balance: userBalance.mpts,
+        balance: userBalance.claimableMPTS,
       },
       LPTS: {
         code: "LPTS",
         icon: LPTSIcon,
-        balance: userBalance.lpts,
+        balance: userBalance.claimableLPTS,
       },
     };
   }, [userBalance]);

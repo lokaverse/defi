@@ -3,10 +3,6 @@ export const idlFactory = ({ IDL }) => {
     transferFailed: IDL.Text,
     success: IDL.Nat,
   });
-  const TransferResult = IDL.Variant({
-    error: IDL.Text,
-    success: IDL.Nat,
-  });
   const TransferRes = IDL.Variant({ error: IDL.Text, success: IDL.Nat });
   const Claimable = IDL.Record({
     id: IDL.Nat,
@@ -30,20 +26,19 @@ export const idlFactory = ({ IDL }) => {
   });
   return IDL.Service({
     addLiquidity: IDL.Func([IDL.Nat], [AddLiquidityResult], []),
-    burnTestCKBTC: IDL.Func([], [TransferResult], []),
     claimCKBTC: IDL.Func([IDL.Nat], [TransferRes], []),
     claimLPTS: IDL.Func([], [TransferRes], []),
     claimMPTS: IDL.Func([], [TransferRes], []),
-    clearData: IDL.Func([], [], []),
+    clearData: IDL.Func([IDL.Bool], [], []),
     distributeLPTS: IDL.Func([IDL.Nat], [], []),
     distributeMPTS: IDL.Func([IDL.Nat, IDL.Text], [], []),
-    fetchUserById: IDL.Func([IDL.Nat], [], ["query"]),
-    fetchUserByPrincipal: IDL.Func([IDL.Principal], [], ["query"]),
     getCKBTCBalance: IDL.Func([], [IDL.Nat], []),
     getCKBTCMinter: IDL.Func([], [IDL.Text], []),
     getCanisterTimeStamp: IDL.Func([], [IDL.Int], ["query"]),
+    getCounter: IDL.Func([], [IDL.Nat], ["query"]),
     getCurrentScheduler: IDL.Func([], [IDL.Nat], ["query"]),
     getNextRebaseHour: IDL.Func([], [IDL.Int], ["query"]),
+    getTime: IDL.Func([], [IDL.Bool], []),
     getUserData: IDL.Func(
       [],
       [
@@ -53,6 +48,8 @@ export const idlFactory = ({ IDL }) => {
           ckbtc: IDL.Nat,
           lpts: IDL.Nat,
           mpts: IDL.Nat,
+          claimableLPTS: IDL.Nat,
+          claimableMPTS: IDL.Nat,
           lokbtc: IDL.Nat,
         }),
       ],
@@ -61,12 +58,12 @@ export const idlFactory = ({ IDL }) => {
     init: IDL.Func([], [IDL.Nat], []),
     isNotPaused: IDL.Func([], [IDL.Bool], ["query"]),
     pauseCanister: IDL.Func([IDL.Bool], [IDL.Bool], []),
+    rebaseLOKBTC: IDL.Func([], [IDL.Text], []),
     requestRedeem: IDL.Func(
       [IDL.Nat],
       [IDL.Variant({ error: IDL.Text, success: Claimable })],
       []
     ),
-    routine24Force: IDL.Func([], [IDL.Text], []),
     setCKBTCPool: IDL.Func([IDL.Text], [IDL.Principal], []),
     setJwalletVault: IDL.Func([IDL.Text], [IDL.Text], []),
     setLOKBTC: IDL.Func([IDL.Text], [], []),
