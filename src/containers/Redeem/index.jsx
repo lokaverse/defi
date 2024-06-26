@@ -32,7 +32,7 @@ const Redeem = () => {
 
   return (
     <main className="redeem-container">
-      <AssetTable showApr={false} showedAssets={["lokBTC", "MPTS"]} />
+      <AssetTable showApr={false} showedAssets={["lokBTC", "MPTS", "LPTS"]} />
       <div className="redeem-header-title">
         <Icon component={RedeemIcon} />
         <p>Redeem</p>
