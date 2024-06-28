@@ -9,7 +9,10 @@ const ScreenLoading = () => {
   const screenHeight = useGetScreenSize();
 
   return (
-    <div className="screen-loading-container" style={{ height: screenHeight }}>
+    <div
+      className="screen-loading-container"
+      style={{ height: screenHeight - 200 }}
+    >
       <InfinitySpin visible={true} color="#ECA400" ariaLabel="loading" />
     </div>
   );

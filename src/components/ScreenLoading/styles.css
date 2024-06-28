@@ -1,6 +1,6 @@
 .screen-loading-container {
-  background-color: #1d1d1d;
-  width: 100vw;
+  background-color: transparent;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

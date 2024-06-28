@@ -6,39 +6,16 @@ import "./style.css";
 const FaqList = [
   {
     question: "What is LOKA?",
-    answer: `Phasellus blandit purus in est tempor, pulvinar suscipit orci
-        luctus. Ut vel porttitor ex. Quisque vel dolor a sem mattis
-        aliquam. Donec ullamcorper ligula ut enim elementum, ut
-        placerat enim semper. Etiam vehicula est quis sollicitudin
-        mattis. Sed gravida tellus eu lorem sodales, sed varius nibh
-        aliquet.`,
+    answer: `Loka is revolutionizing the Bitcoin mining ecosystem by directly connecting investors with Bitcoin miners through a decentralized mining pool and a permissionless forward hashrate marketplace protocol.`,
   },
   {
-    question: "How does LOKA work?",
-    answer: `Phasellus blandit purus in est tempor, pulvinar suscipit orci
-        luctus. Ut vel porttitor ex. Quisque vel dolor a sem mattis
-        aliquam. Donec ullamcorper ligula ut enim elementum, ut
-        placerat enim semper. Etiam vehicula est quis sollicitudin
-        mattis. Sed gravida tellus eu lorem sodales, sed varius nibh
-        aliquet.`,
+    question: "How does the Loka Mining Pool work?",
+    answer: `Provide liquidity to the Loka decentralized mining pool and earn LP Points (LPTS) via lokBTC, a liquid LP token that is 1:1 redeemable at any time for native Bitcoin.`,
   },
   {
-    question: "Is it safe to work with LOKA?",
-    answer: `Phasellus blandit purus in est tempor, pulvinar suscipit orci
-        luctus. Ut vel porttitor ex. Quisque vel dolor a sem mattis
-        aliquam. Donec ullamcorper ligula ut enim elementum, ut
-        placerat enim semper. Etiam vehicula est quis sollicitudin
-        mattis. Sed gravida tellus eu lorem sodales, sed varius nibh
-        aliquet.`,
-  },
-  {
-    question: "What is LOKA staking APR for ICP?",
-    answer: `Phasellus blandit purus in est tempor, pulvinar suscipit orci
-        luctus. Ut vel porttitor ex. Quisque vel dolor a sem mattis
-        aliquam. Donec ullamcorper ligula ut enim elementum, ut
-        placerat enim semper. Etiam vehicula est quis sollicitudin
-        mattis. Sed gravida tellus eu lorem sodales, sed varius nibh
-        aliquet.`,
+    question:
+      "What advantages do Bitcoin miners get from using the Loka mining pool?",
+    answer: `Miners receive the highest payout in the market and earn Miner Points (MPTS) based on their hashrate contribution. They will also be able to sell their future mining rewards for upfront revenue in the forward hashrate marketplace.`,
   },
 ];
 
