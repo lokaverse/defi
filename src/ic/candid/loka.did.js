@@ -26,10 +26,10 @@ export const idlFactory = ({ IDL }) => {
   });
   return IDL.Service({
     addLiquidity: IDL.Func([IDL.Nat], [AddLiquidityResult], []),
-    claimCKBTC: IDL.Func([IDL.Nat], [TransferRes], []),
+    claimCKBTC: IDL.Func([], [TransferRes], []),
     claimLPTS: IDL.Func([], [TransferRes], []),
     claimMPTS: IDL.Func([], [TransferRes], []),
-    clearData: IDL.Func([IDL.Bool], [], []),
+    clearDefiData: IDL.Func([IDL.Bool], [], []),
     distributeLPTS: IDL.Func([IDL.Nat], [], []),
     distributeMPTS: IDL.Func([IDL.Nat, IDL.Text], [], []),
     getCKBTCBalance: IDL.Func([], [IDL.Nat], []),
@@ -37,6 +37,8 @@ export const idlFactory = ({ IDL }) => {
     getCanisterTimeStamp: IDL.Func([], [IDL.Int], ["query"]),
     getCounter: IDL.Func([], [IDL.Nat], ["query"]),
     getCurrentScheduler: IDL.Func([], [IDL.Nat], ["query"]),
+    getLPTS: IDL.Func([], [IDL.Vec(IDL.Tuple(IDL.Text, IDL.Nat))], []),
+    getMPTS: IDL.Func([], [IDL.Vec(IDL.Tuple(IDL.Text, IDL.Nat))], []),
     getNextRebaseHour: IDL.Func([], [IDL.Int], ["query"]),
     getTime: IDL.Func([], [IDL.Bool], []),
     getUserData: IDL.Func(
@@ -45,17 +47,18 @@ export const idlFactory = ({ IDL }) => {
         IDL.Record({
           staked: IDL.Nat,
           ckBTCClaimList: IDL.Vec(IDL.Tuple(IDL.Nat, Claimable)),
+          totalPendingCKBTC: IDL.Nat,
           ckbtc: IDL.Nat,
           lpts: IDL.Nat,
           mpts: IDL.Nat,
           claimableLPTS: IDL.Nat,
           claimableMPTS: IDL.Nat,
           lokbtc: IDL.Nat,
+          totalWithdrawableCKBTC: IDL.Nat,
         }),
       ],
       []
     ),
-    init: IDL.Func([], [IDL.Nat], []),
     isNotPaused: IDL.Func([], [IDL.Bool], ["query"]),
     pauseCanister: IDL.Func([IDL.Bool], [IDL.Bool], []),
     rebaseLOKBTC: IDL.Func([], [IDL.Text], []),
@@ -68,6 +71,8 @@ export const idlFactory = ({ IDL }) => {
     setJwalletVault: IDL.Func([IDL.Text], [IDL.Text], []),
     setLOKBTC: IDL.Func([IDL.Text], [], []),
     setPoolCanister: IDL.Func([IDL.Text], [], []),
+    swapToLPTS: IDL.Func([IDL.Nat], [TransferRes], []),
+    swapToMPTS: IDL.Func([IDL.Nat], [TransferRes], []),
     transform: IDL.Func(
       [TransformArgs],
       [CanisterHttpResponsePayload],

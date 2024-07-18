@@ -11,12 +11,12 @@ const RequestWithdrawForm = () => {
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
 
-  const [selectedAsset, setSelectedAsset] = useState("ckBTC");
+  const [selectedAsset, setSelectedAsset] = useState("lokBTC");
 
   const assets = {
-    ckBTC: {
-      currency: "ckBTC",
-      balance: userBalance.ckbtc,
+    lokBTC: {
+      currency: "lokBTC",
+      balance: userBalance.lokbtc,
     },
     MPTS: {
       currency: "MPTS",
@@ -111,7 +111,7 @@ const RequestWithdrawForm = () => {
         Request withdrawal
       </Button>
 
-      {selectedAsset === "ckBTC" && (
+      {selectedAsset === "lokBTC" && (
         <div className="bottom-information">
           <p className="title">Processing time</p>
           <p className="value">24 Hour</p>

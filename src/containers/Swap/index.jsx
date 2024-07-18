@@ -14,7 +14,8 @@ const Swap = () => {
   const { userBalance, getUserBalance, lokaDefiAgent } = useContext(AppContext);
   const [base, setBase] = useState("MPTS");
   const [counter, setCounter] = useState("LPTS");
-
+  const [amount, setAmount] = useState(0);
+  const [loading, setLoading] = useState(false);
   const assets = {
     MPTS: {
       currency: "MPTS",
@@ -45,6 +46,12 @@ const Swap = () => {
     setCounter(newCounter);
   };
 
+  const handleInputChange = (event) => {
+    const newValue = event.target.value.toString(); // Ensure the value is at least 100
+    setAmount(newValue);
+    console.log(newValue, "<<<<< swapping");
+  };
+
   return (
     <main className="swap-container">
       <AssetTable showApr={false} showedAssets={["MPTS", "LPTS"]} />
@@ -58,6 +65,10 @@ const Swap = () => {
         asset={assets[base]}
         swapOption={Object.keys(assets)}
         onSwap={handleSwapChange}
+        changeInput={handleInputChange}
+        loading={loading}
+        amount={amount}
+        setAmount={setAmount}
       />
 
       <div className="swap-change-button-container">
@@ -74,6 +85,10 @@ const Swap = () => {
         asset={assets[counter]}
         swapOption={Object.keys(assets)}
         onSwap={handleSwapChange}
+        changeInput={handleInputChange}
+        loading={loading}
+        amount={amount}
+        setAmount={setAmount}
       />
 
       <Button type="primary" className="swap-submit-button">

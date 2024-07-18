@@ -80,6 +80,7 @@ export const AppProvider = ({ children }) => {
   const getUserBalance = async () => {
     setGetBalanceLoading(true);
     const userData = await lokaDefiAgent.getUserData();
+    console.log(userData, "<<<<<<< usrd");
     setUserBalance(normalizeUserBalance(userData));
     setGetBalanceLoading(false);
   };
