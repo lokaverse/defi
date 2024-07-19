@@ -11,9 +11,9 @@ import BottomNavigation from "./components/BottomNavigation";
 import AddressButton from "../components/AddressButton";
 import BlockedScreen from "../components/BlockedScreen";
 
-import LokaLogo from "../assets/image/loka_logo.png";
+import LokaLogo from "../assets/image/logo_white.png";
 
-import "./style.css";
+import "./style.scss";
 
 const { Header, Content, Footer } = Layout;
 
@@ -65,7 +65,7 @@ const LayoutContainers = () => {
       className="main-layout"
       style={{
         minHeight: `${viewportHeight}px`,
-        backgroundColor: "#101828",
+        background: "black",
       }}
     >
       <Header
@@ -86,7 +86,7 @@ const LayoutContainers = () => {
                 style={{ cursor: "pointer" }}
                 src={LokaLogo}
                 alt="loka-logo"
-                width={isMobile ? "100%" : "75%"}
+                width={isMobile ? "100%" : "55%"}
               />
             </div>
           </Col>
@@ -107,29 +107,27 @@ const LayoutContainers = () => {
             </Col>
           )}
 
-          <Col
-            xs={{ span: 19 }}
-            lg={{ span: 9 }}
-            style={{ display: "flex", justifyContent: "flex-end" }}
-          >
-            <AddressButton walletAddres={userPrincipal.toString()} />
-          </Col>
+          {isWalletConnected && (
+            <Col
+              xs={{ span: 19 }}
+              lg={{ span: 9 }}
+              style={{ display: "flex", justifyContent: "flex-end" }}
+            >
+              <AddressButton walletAddres={userPrincipal.toString()} />
+            </Col>
+          )}
         </Row>
       </Header>
       <Content>
-        <div
-          style={{
-            background: "transparent",
-            padding: 24,
-            color: "white",
-          }}
-        >
-          <Row justify={"center"}>
-            <Col xs={{ span: 24 }} md={{ span: 12 }} lg={{ span: 6 }}>
-              {isWalletConnected ? <Outlet /> : <BlockedScreen />}
-            </Col>
-          </Row>
-        </div>
+        <Row justify={"center"}>
+          <Col
+            xs={{ span: 24 }}
+            md={{ span: 12 }}
+            lg={{ span: isWalletConnected ? 6 : 10 }}
+          >
+            {isWalletConnected ? <Outlet /> : <BlockedScreen />}
+          </Col>
+        </Row>
       </Content>
       {isMobile && (
         <Footer
@@ -140,7 +138,7 @@ const LayoutContainers = () => {
             backgroundColor: "red",
           }}
         >
-          <BottomNavigation />
+          <BottomNavigation isWalletConnected={isWalletConnected} />
         </Footer>
       )}
     </Layout>

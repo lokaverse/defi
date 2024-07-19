@@ -20,7 +20,7 @@ import { shortenWalletAddress } from "../../helper/string";
 import { AppContext } from "../../context";
 import { LogoutIcon, ICPIcon } from "../Icons";
 
-import "./style.css";
+import "./style.scss";
 
 const AddressButton = ({ walletAddres }) => {
   const isMobile = useMediaQuery({ maxWidth: 767 });

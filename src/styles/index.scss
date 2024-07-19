@@ -1,0 +1,75 @@
+@import "./colors.scss";
+@import "./mixins.scss";
+@import "./fonts.css";
+
+html {
+  -webkit-tap-highlight-color: transparent;
+  font-size: 10px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  background: white;
+  line-height: 1.42857;
+  color: $black;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  @include PPRadioGrotesk-regular-font;
+}
+
+// common class
+.full-height {
+  @include full-height-container;
+}
+
+/* override antd class */
+
+/* antd menu component */
+
+.ant-menu-item {
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  color: white !important;
+}
+
+.ant-menu-item-selected {
+  background-color: transparent !important;
+  color: $red !important;
+  font-weight: 700 !important;
+}
+
+/* costom select style */
+
+.custom-currency-select .ant-select-selector {
+  border: none !important;
+  color: white !important;
+  border-radius: 25px;
+  height: 40px !important;
+}
+
+.custom-currency-select .ant-select-open {
+  color: white !important;
+}
+
+.custom-currency-select .ant-select-selection-item {
+  color: white !important;
+}
+
+.custom-currency-select.ant-select-single {
+  height: 40px !important;
+}
+
+.custom-currency-select.ant-select-single .ant-select-selector {
+  padding: 10px 18px !important;
+}
+
+.custom-currency-select .ant-select-arrow {
+  color: white !important;
+}
+
+.ant-select-item-option-content {
+  color: white !important;
+}

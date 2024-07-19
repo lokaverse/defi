@@ -5,7 +5,7 @@ import StakeCkBTC from "../../components/StakeCkBTC";
 import Faq from "../../components/Faq";
 import { AppContext } from "../../context";
 
-import "./style.css";
+import "./style.scss";
 
 const Stake = () => {
   const { userBalance } = useContext(AppContext);

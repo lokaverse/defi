@@ -4,7 +4,7 @@
 
 .stake-ckbtc-container .header-title {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     gap: 10px;
     padding: 24px 0px 16px 0px;
