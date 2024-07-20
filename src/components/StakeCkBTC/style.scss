@@ -1,0 +1,146 @@
+@import "src/styles/mixins";
+@import "src/styles/colors";
+
+.stake-ckbtc-container {
+  width: 100%;
+
+  .header-title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    padding: 24px 0px 16px 0px;
+    color: white;
+    @include spaceMono-regular-font;
+
+    svg {
+      fill: white;
+    }
+
+    p {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 30px;
+      letter-spacing: 0em;
+      text-align: left;
+      margin: 0px;
+    }
+  }
+
+  .stake-status {
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+
+    .title {
+      margin-top: 0px;
+      margin-bottom: 8px;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 18px;
+      letter-spacing: 0em;
+      text-align: left;
+      color: $red;
+      @include klamp-bold-font;
+    }
+
+    .value {
+      margin: 0px;
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0em;
+      text-align: left;
+      @include PPRadioGrotesk-regular-font;
+    }
+
+    .amount-skeleton {
+      width: 80px !important;
+      height: 22px !important;
+      --antd-wave-shadow-color: rgba(255, 255, 255, 0.65);
+
+      .ant-skeleton-button {
+        background-color: rgba(255, 255, 255, 0.75) !important;
+      }
+    }
+
+    .stake-error-text {
+      font-size: 10px;
+      color: red;
+      margin-bottom: 0px;
+      margin-top: 5px;
+    }
+  }
+
+  .stake-form-container {
+    background-color: $medium-grey;
+    padding: 24px;
+    border-radius: 5px;
+    margin-top: 24px;
+
+    .stake-amount {
+      border: 1px solid $border-second;
+      background-color: $dark-grey;
+
+      .ant-input {
+        padding-left: 10px !important;
+        color: #eaecf0 !important;
+
+        &::placeholder {
+          color: #eaecf0 !important;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 24px;
+          letter-spacing: 0em;
+          text-align: left;
+        }
+      }
+
+      &.ant-input-affix-wrapper {
+        height: 48px !important;
+        background: #1f1d1d;
+        padding: 10px 9px 10px 16px !important;
+        border: 1px solid rgba(114, 116, 118, 1);
+      }
+    }
+
+    .stake-amount-max-button {
+      border: none !important;
+      color: white !important;
+      height: 28px !important;
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 24px;
+      letter-spacing: 0em;
+      text-align: left;
+      padding: 2px 6px;
+      border-radius: 4px !important;
+      background-color: $red !important;
+    }
+
+    .stake-submit-button {
+      width: 100%;
+      height: 46px;
+      border-radius: 8px !important;
+      @include common-button;
+    }
+  }
+}
+
+.stake-receive-information {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  color: white;
+
+  span {
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: right;
+  }
+}

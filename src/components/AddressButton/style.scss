@@ -9,20 +9,20 @@
 
   p {
     font-size: 12px;
-    font-weight: 600;
     line-height: 18px;
     letter-spacing: 0em;
     text-align: left;
-    color: white;
+    color: $red;
     margin: 0px;
+    @include PPRadioGrotesk-bold-font;
   }
 
   .button-container {
     display: flex;
     flex: none;
     align-items: center;
-    border-radius: 26px;
-    border: 1px solid rgba(236, 164, 0, 0.8);
+    border-radius: 5px;
+    border: 1px solid #cabebb;
   }
 
   .custom-switch {
@@ -82,28 +82,20 @@
       background-color: #000000b2;
       padding: 0px 8px 16px 8px;
       z-index: 998;
-      border-bottom-left-radius: 16px;
-      border-bottom-right-radius: 16px;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
 
       .logout-button {
         border: none !important;
         width: 100%;
-        border-radius: 8px !important;
+        border-radius: 5px !important;
         font-weight: 500;
         letter-spacing: 0em;
         text-align: center;
         display: flex;
         align-items: center;
         justify-content: center;
-
-        &:hover {
-          border: none !important;
-          background: linear-gradient(
-            88.85deg,
-            #043153 -9.61%,
-            #e09b00 116.77%
-          ) !important;
-        }
+        @include common-button;
       }
     }
   }

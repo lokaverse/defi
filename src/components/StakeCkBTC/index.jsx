@@ -5,7 +5,7 @@ import Icon from "@ant-design/icons";
 import { AppContext } from "../../context";
 import { StakeIcon, ICPIcon } from "../Icons";
 
-import "./style.css";
+import "./style.scss";
 
 const StakeCkBTC = ({ ckBTCBalance, stakedBalance }) => {
   const { lokaDefiAgent, ckBTCAgent, getUserBalance, getBalanceLoading } =
@@ -89,7 +89,7 @@ const StakeCkBTC = ({ ckBTCBalance, stakedBalance }) => {
     <section className="stake-ckbtc-container">
       <div className="header-title">
         <Icon component={StakeIcon} />
-        <p>Put Liquidity ckBTC</p>
+        <p>PUT LIQUIDITY ckBTC</p>
       </div>
 
       <div className="stake-status">
@@ -134,13 +134,12 @@ const StakeCkBTC = ({ ckBTCBalance, stakedBalance }) => {
         <p className="stake-error-text">{error}</p>
 
         <Button
-          type="primary"
           className="stake-submit-button"
           loading={loading}
           onClick={onStaked}
           disabled={getBalanceLoading}
         >
-          Stake
+          STAKE
         </Button>
 
         <div className="stake-receive-information">
