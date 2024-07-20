@@ -1,7 +1,7 @@
 import React from "react";
 import { Select, Input, Button } from "antd";
 
-import "./style.css";
+import "./style.scss";
 
 const typeTittleMapping = {
   base: "You pay",
@@ -35,30 +35,11 @@ const SwapAsset = ({
       <p className="swap-type-title">{typeTittleMapping[type]}</p>
       <div className="swap-section">
         <div className="top">
-          <p className="swap-amount">
-            {type == "base" ? (
-              <Input
-                className="stake-amount"
-                placeholder="swap amount"
-                disabled={loading}
-                suffix={
-                  <Button
-                    className="stake-amount-max-button"
-                    onClick={() => {
-                      setAmount(asset.balance);
-                    }}
-                    disabled={loading}
-                  >
-                    MAX
-                  </Button>
-                }
-                value={amount}
-                onChange={validateInput}
-              />
-            ) : (
-              amount
-            )}
-          </p>
+          <Input
+            className="swap-amount"
+            value={amount}
+            onChange={validateInput}
+          />
           <Select
             className="swap-asset-select custom-currency-select"
             value={value}
@@ -69,7 +50,7 @@ const SwapAsset = ({
         </div>
 
         <div className="bottom">
-          <p>$0</p>
+          <p>{`$${amount}`}</p>
           <p>{`Balance: ${asset.balance}`}</p>
         </div>
       </div>

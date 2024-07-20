@@ -8,7 +8,7 @@ import AssetTable from "../../components/AssetTable";
 import SwapAsset from "../../components/SwapAssets";
 import { SwapIcon, SwapChange } from "../../components/Icons";
 
-import "./style.css";
+import "./style.scss";
 
 const Swap = () => {
   const { userBalance, getUserBalance, lokaDefiAgent, lptsAgent, mptsAgent } =
@@ -90,6 +90,7 @@ const Swap = () => {
         <Icon component={SwapIcon} />
         <p>Swap</p>
       </div>
+
       <SwapAsset
         type={"base"}
         value={base}
@@ -122,11 +123,7 @@ const Swap = () => {
         setAmount={setAmount}
       />
 
-      <Button
-        type="primary"
-        className="swap-submit-button"
-        onClick={executeSwap}
-      >
+      <Button className="swap-submit-button" onClick={executeSwap}>
         Swap
       </Button>
     </main>
