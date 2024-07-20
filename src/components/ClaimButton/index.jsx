@@ -5,7 +5,7 @@ import clsx from "clsx";
 
 import { AppContext } from "../../context";
 
-import "./style.css";
+import "./style.scss";
 
 const ClaimButton = ({ icon, name, value, onClaim, isLoading }) => {
   const { getBalanceLoading } = useContext(AppContext);
@@ -37,7 +37,7 @@ const ClaimButton = ({ icon, name, value, onClaim, isLoading }) => {
         className={clsx("button-section", { isLoading })}
       >
         {isLoading && <LoadingOutlined />}
-        <p>Claim</p>
+        <p>CLAIM</p>
       </div>
     </div>
   );

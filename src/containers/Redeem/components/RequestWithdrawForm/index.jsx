@@ -3,7 +3,7 @@ import { Select, Input, Button } from "antd";
 
 import { AppContext } from "../../../../context";
 
-import "./styles.css";
+import "./styles.scss";
 
 const RequestWithdrawForm = () => {
   const { userBalance, getUserBalance, lokaDefiAgent } = useContext(AppContext);
@@ -70,7 +70,7 @@ const RequestWithdrawForm = () => {
     <div className="request-withdraw-form-container">
       <div className="selector-container">
         <Select
-          className="request-withdraw-select custom-currency-select"
+          className="custom-currency-select request-withdraw-select"
           value={selectedAsset}
           onChange={(val) => {
             setAmount();
@@ -85,15 +85,12 @@ const RequestWithdrawForm = () => {
 
         <div className="withdraw-input-section">
           <Input
-            className="stake-amount"
+            className="withdraw-amount"
             value={amount}
-            placeholder="amount"
+            placeholder="Amount"
             onChange={handleAmountInput}
             suffix={
-              <Button
-                className="stake-amount-max-button"
-                onClick={handleSetMax}
-              >
+              <Button className="withdraw-max-button" onClick={handleSetMax}>
                 MAX
               </Button>
             }
@@ -103,12 +100,12 @@ const RequestWithdrawForm = () => {
       </div>
 
       <Button
-        type="primary"
-        className="stake-submit-button"
+        block
+        className="withdraw-submit-button"
         loading={loading}
         onClick={handleWithdraw}
       >
-        Request withdrawal
+        REQUEST WITHDRAWAL
       </Button>
 
       {selectedAsset === "lokBTC" && (
