@@ -46,6 +46,15 @@ const Swap = () => {
     setCounter(newCounter);
   };
 
+  const executeSwap = async () => {
+    if (base == "MPTS") {
+      await lokaDefiAgent.swapToLPTS(amount);
+    } else {
+      await lokaDefiAgent.swapToMPTS(amount);
+    }
+    getUserBalance();
+  };
+
   const handleInputChange = (event) => {
     const newValue = event.target.value.toString(); // Ensure the value is at least 100
     setAmount(newValue);
@@ -91,7 +100,11 @@ const Swap = () => {
         setAmount={setAmount}
       />
 
-      <Button type="primary" className="swap-submit-button">
+      <Button
+        type="primary"
+        className="swap-submit-button"
+        onClick={executeSwap}
+      >
         Swap
       </Button>
     </main>

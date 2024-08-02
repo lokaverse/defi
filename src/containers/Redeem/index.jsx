@@ -16,7 +16,7 @@ import "./style.css";
 
 const Redeem = () => {
   const [activeMenu, setActiveMenu] = useState("withdrawl");
-
+  const { userBalance, getUserBalance, lokaDefiAgent } = useContext(AppContext);
   const withdrawlTabsItem = [
     {
       key: "1",
@@ -73,12 +73,12 @@ const Redeem = () => {
               <div className="ready">
                 <Icon component={CheckCircle} />
                 <p className="title">Ready to claim</p>
-                <p className="value">0</p>
+                <p className="value">{userBalance.totalWithdrawableCKBTC}</p>
               </div>
               <div className="pending">
                 <Icon component={ClockCircle} />
                 <p className="title">Pending</p>
-                <p className="value">0</p>
+                <p className="value">{userBalance.totalPendingCKBTC}</p>
               </div>
             </div>
           </div>

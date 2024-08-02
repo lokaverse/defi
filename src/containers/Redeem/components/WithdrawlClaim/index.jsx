@@ -23,10 +23,15 @@ const WithdrawlClaim = () => {
         icon: MPTSIcon,
         balance: userBalance.mpts,
       },
+      LPTS: {
+        code: "LPTS",
+        icon: MPTSIcon,
+        balance: userBalance.lpts,
+      },
       lokBTC: {
         code: "lokBTC",
         icon: LOKBTCIcon,
-        balance: userBalance.lokbtc,
+        balance: userBalance.totalWithdrawableCKBTC,
       },
     };
   }, [userBalance]);

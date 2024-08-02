@@ -76,11 +76,12 @@ export const AppProvider = ({ children }) => {
   const [lokBTCAgent, setLokBTCAgent] = useState();
   const [userBalance, setUserBalance] = useState(defaultUserBalance);
   const [getBalanceLoading, setGetBalanceLoading] = useState(false);
+  const [getWithdrawableCKBTC, setWithdrawableCKBTC] = useState(0);
 
   const getUserBalance = async () => {
     setGetBalanceLoading(true);
     const userData = await lokaDefiAgent.getUserData();
-    console.log(userData, "<<<<<<< usrd");
+   // console.log(userData, "<<<<<<< usrd");
     setUserBalance(normalizeUserBalance(userData));
     setGetBalanceLoading(false);
   };

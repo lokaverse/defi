@@ -59,11 +59,10 @@ const RequestWithdrawForm = () => {
 
     setError();
     setLoading(true);
-
+    var result = await lokaDefiAgent.requestRedeem(amount * 1e8);
+    getUserBalance();
+    setLoading(false);
     // mock function
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
   };
 
   return (
