@@ -8,6 +8,8 @@ import {
   lokaDefiAgentCreation,
   ckBTCAgentCreation,
   lokBTCAgentCreation,
+  lptsAgentCreation,
+  mptsAgentCreation,
 } from "../service/canister";
 
 import { normalizeUserBalance } from "../helper/number";
@@ -77,11 +79,13 @@ export const AppProvider = ({ children }) => {
   const [userBalance, setUserBalance] = useState(defaultUserBalance);
   const [getBalanceLoading, setGetBalanceLoading] = useState(false);
   const [getWithdrawableCKBTC, setWithdrawableCKBTC] = useState(0);
+  const [mptsAgent, setMptsAgent] = useState();
+  const [lptsAgent, setLptsAgent] = useState();
 
   const getUserBalance = async () => {
     setGetBalanceLoading(true);
     const userData = await lokaDefiAgent.getUserData();
-   // console.log(userData, "<<<<<<< usrd");
+    // console.log(userData, "<<<<<<< usrd");
     setUserBalance(normalizeUserBalance(userData));
     setGetBalanceLoading(false);
   };
@@ -94,8 +98,12 @@ export const AppProvider = ({ children }) => {
       if (sdkInstance?.privKey) {
         const defiAgent = lokaDefiAgentCreation(sdkInstance.privKey);
         const ckbtcAgent = ckBTCAgentCreation(sdkInstance.privKey);
+        const lpAgent = lptsAgentCreation(sdkInstance.privKey);
+        const mpAgent = mptsAgentCreation(sdkInstance.privKey);
         setLokaDefiAgent(defiAgent);
         setCkBTCAgent(ckbtcAgent);
+        setLptsAgent(lpAgent);
+        setMptsAgent(mpAgent);
       }
     }
     initializeOpenlogin();
@@ -121,6 +129,8 @@ export const AppProvider = ({ children }) => {
         setUserBalance,
         getUserBalance,
         getBalanceLoading,
+        lptsAgent,
+        mptsAgent,
       }}
     >
       <Helmet>

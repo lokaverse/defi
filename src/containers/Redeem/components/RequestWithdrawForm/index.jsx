@@ -60,6 +60,7 @@ const RequestWithdrawForm = () => {
     setError();
     setLoading(true);
     var result = await lokaDefiAgent.requestRedeem(amount * 1e8);
+    console.log(result, "<<<< reeq");
     getUserBalance();
     setLoading(false);
     // mock function

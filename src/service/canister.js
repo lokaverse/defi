@@ -87,3 +87,37 @@ export const ckBTCAgentCreation = (privKey) => {
     return null;
   }
 };
+
+export const mptsAgentCreation = (privKey) => {
+  try {
+    const userIdentity = getUserIdentity(privKey);
+
+    const userckBTCIdentity = createActorCKBTC(
+      "qnxxg-3qaaa-aaaak-qinda-cai",
+      {
+        identity: userIdentity,
+      }
+    );
+
+    return userckBTCIdentity;
+  } catch (error) {
+    return null;
+  }
+};
+
+export const lptsAgentCreation = (privKey) => {
+  try {
+    const userIdentity = getUserIdentity(privKey);
+
+    const userckBTCIdentity = createActorCKBTC(
+      "qkwrs-wiaaa-aaaak-qindq-cai",
+      {
+        identity: userIdentity,
+      }
+    );
+
+    return userckBTCIdentity;
+  } catch (error) {
+    return null;
+  }
+};

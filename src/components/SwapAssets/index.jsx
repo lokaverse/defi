@@ -22,10 +22,11 @@ const SwapAsset = ({
 }) => {
   const validateInput = (event) => {
     var newValue = event.target.value.toString(); // Ensure the value is at least 100
-    console.log(newValue, "<<<<w");
+    //console.log(newValue, "<<<<w");
     console.log(asset.balance, "<<<<aw");
-    console.log(type, "<<<<tp");
-    if (type == "base" && Number(newValue) > Number(asset.balance)) newValue = asset.balance;
+    //console.log(type, "<<<<tp");
+    if (type == "base" && Number(newValue) > Number(asset.balance))
+      newValue = asset.balance;
     setAmount(newValue);
     //console.log(newValue, "<<<<< swapping");
   };
