@@ -1,0 +1,68 @@
+@import "src/styles/mixins";
+@import "src/styles/colors";
+
+.swap-assets-container {
+  width: 100%;
+
+  .swap-type-title {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-top: 0px;
+    margin-bottom: 8px;
+    color: white;
+  }
+
+  .swap-section {
+    background-color: $medium-grey;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 24px;
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .swap-amount {
+        background-color: transparent !important;
+        border: none !important;
+        padding: 0px !important;
+        color: $light-grey;
+        font-size: 30px;
+        @include PPRadioGrotesk-regular-font;
+
+        &:focus {
+          outline: none; // Menghilangkan outline browser default
+          box-shadow: none; // Menghilangkan shadow pada Antd input
+        }
+      }
+    }
+
+    .bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    p {
+      font-size: 11px;
+      font-weight: 400;
+      line-height: 20px;
+      letter-spacing: 0em;
+      text-align: right;
+      color: #46c590;
+      opacity: 0.7;
+      margin-top: 20px;
+      margin-bottom: 0px;
+    }
+  }
+}
+
+.swap-asset-select .ant-select-selector {
+  background-color: $dark-grey !important;
+}

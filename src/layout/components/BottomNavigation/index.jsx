@@ -10,7 +10,7 @@ import {
   HistoryIcon,
 } from "../../../components/Icons";
 
-import "./style.css";
+import "./style.scss";
 
 const menuItem = ["stake", "swap", "redeem", "history"];
 
@@ -21,7 +21,7 @@ const iconMapping = {
   history: HistoryIcon,
 };
 
-const BottomNavigation = () => {
+const BottomNavigation = ({ isWalletConnected }) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
@@ -31,13 +31,14 @@ const BottomNavigation = () => {
         return (
           <div
             key={item}
-            className={clsx("bottom-navigation-item", {
-              "selected-menu": pathname.slice(1) === item,
+            className={clsx("item", {
+              selected: pathname.slice(1) === item,
+              disabled: !isWalletConnected,
             })}
             onClick={() => navigate(`/${item}`)}
           >
             <Icon component={iconMapping[item]} />
-            <p className="bottom-navigation-label">{item}</p>
+            <p className="label">{item}</p>
           </div>
         );
       })}

@@ -1,0 +1,74 @@
+@import "src/styles/mixins";
+@import "src/styles/colors";
+
+.asset-table-contianer {
+  width: 100%;
+  border-radius: 16px;
+  color: white;
+
+  .asset-table-header-section {
+    width: 100%;
+    display: flex;
+
+    .asset-title {
+      width: 50%;
+      display: flex;
+      // justify-content: center;
+      padding: 12px 0px;
+      align-items: center;
+      @include spaceMono-regular-font;
+
+      p {
+        margin: 0px;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 18px;
+        letter-spacing: 0em;
+        text-align: left;
+      }
+    }
+
+    .loka-apr {
+      width: 50%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      @include klamp-regular-font;
+
+      p {
+        margin: 0px;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .percentage-apr {
+        color: #66c61c;
+      }
+    }
+  }
+
+  .asset-table-item-list {
+    .asset-item {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 18px;
+      letter-spacing: 0em;
+      text-align: left;
+      padding: 12px 0px;
+      @include klamp-bold-font;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid $medium-grey;
+      }
+    }
+  }
+
+  .asset-code {
+    img {
+      margin-right: 14px;
+    }
+  }
+}

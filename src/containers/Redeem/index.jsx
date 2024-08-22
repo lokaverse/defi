@@ -12,7 +12,7 @@ import RequestWithdrawForm from "./components/RequestWithdrawForm";
 import WithdrawlClaim from "./components/WithdrawlClaim";
 import ClaimSection from "./components/ClaimSection";
 
-import "./style.css";
+import "./style.scss";
 
 const Redeem = () => {
   const [activeMenu, setActiveMenu] = useState("withdrawl");

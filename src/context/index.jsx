@@ -25,10 +25,15 @@ const openLoginConfig = {
 
 const themeProvider = {
   token: {
-    colorPalette1: "#ECA400", // orange
-    colorPalette2: "#134E48", // green
-    colorPalette3: "#FFFB07", // yellow
-    fontFamily: "Inter",
+    black: "#3d3c3d",
+    grey: "#73888c",
+    mediumGrey: "#373d43",
+    lightGrey: "#e8e3da",
+    darkgrey: "#2c2f33",
+    primary: "#f7931a",
+    red: "#f74b37",
+    green: "#66c61c",
+    fontFamily: "PPRadioGrotesk",
     Button: {
       colorPrimary:
         "linear-gradient(88.85deg, #043153 -9.61%, #E09B00 116.77%)",

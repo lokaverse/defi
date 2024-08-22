@@ -1,0 +1,11 @@
+@import "src/styles/mixins";
+@import "src/styles/colors";
+
+.withdraw-claim-container {
+  border: 1px solid #7c726f;
+  border-radius: 8px;
+  padding: 24px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -1,0 +1,132 @@
+@mixin hide_scrollbar {
+  /* Hide scrollbar */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none;
+
+  /* IE and Edge */
+  scrollbar-width: none;
+}
+
+// center vertically & horizontally
+@mixin absolute-center() {
+  position: absolute;
+  display: block;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// center horizontally
+@mixin center-h($top: 0) {
+  position: absolute;
+  display: block;
+  top: $top;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+// center flex
+@mixin center-flex() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// center vertical
+@mixin center-flex-vertical() {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+@mixin full-height-container() {
+  height: 100% !important;
+}
+
+@mixin inter-regular-font {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-weight: normal;
+}
+
+@mixin inter-semibold-font {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-weight: 600;
+}
+
+@mixin inter-bold-font {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+@mixin klamp-regular-font {
+  font-family: klamp, Arial, Helvetica, sans-serif;
+  font-weight: 400;
+}
+
+@mixin klamp-bold-font {
+  font-family: klamp, Arial, Helvetica, sans-serif;
+  font-weight: 600;
+}
+
+@mixin PPRadioGrotesk-regular-font {
+  font-family: PPRadioGrotesk, Arial, Helvetica, sans-serif;
+  font-weight: 500;
+}
+
+@mixin PPRadioGrotesk-bold-font {
+  font-family: PPRadioGrotesk, Arial, Helvetica, sans-serif;
+  font-weight: 700;
+}
+
+@mixin spaceMono-regular-font {
+  font-family: SpaceMono, Arial, Helvetica, sans-serif;
+  font-weight: 400;
+}
+
+@mixin spaceMono-bold-font {
+  font-family: SpaceMono, Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+@mixin clamp($maxlines: 2) {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $maxlines;
+}
+
+@mixin common-grey-border {
+  border: 1px solid $default-soft-gray;
+}
+
+@mixin clickable-effect {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+
+  &:active {
+    transform: scale(0.7);
+  }
+}
+
+@mixin common-button {
+  color: $dark-grey;
+  background-color: $primary;
+  border-radius: 8px;
+  border: none !important;
+  @include spaceMono-regular-font();
+
+  &:hover {
+    background-color: $red !important;
+    color: $light-grey !important;
+  }
+
+  &:disabled {
+    background-color: $medium-grey !important;
+    color: #606465 !important;
+    border: 1px solid #606465 !important;
+  }
+}

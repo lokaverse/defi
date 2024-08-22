@@ -7,7 +7,7 @@ import ClaimButton from "../../../../components/ClaimButton";
 import MPTSIcon from "../../../../assets/icon/mpts-icon.png";
 import LOKBTCIcon from "../../../../assets/icon/lokbtc-icon.png";
 
-import "./styles.css";
+import "./styles.scss";
 
 const WithdrawlClaim = () => {
   const { userBalance, getUserBalance, lokaDefiAgent } = useContext(AppContext);

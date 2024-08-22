@@ -7,6 +7,7 @@ import { message, Button, Modal } from "antd";
 import Icon, {
   LoadingOutlined,
   CloseOutlined,
+  LogoutOutlined,
   GoogleOutlined,
 } from "@ant-design/icons";
 
@@ -20,7 +21,7 @@ import { shortenWalletAddress } from "../../helper/string";
 import { AppContext } from "../../context";
 import { LogoutIcon, ICPIcon } from "../Icons";
 
-import "./style.css";
+import "./style.scss";
 
 const AddressButton = ({ walletAddres }) => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
@@ -166,7 +167,6 @@ const AddressButton = ({ walletAddres }) => {
                   }}
                 >
                   <Button
-                    type="primary"
                     className="logout-button"
                     style={{
                       fontSize: isMobile ? 8 : 12,
@@ -174,8 +174,8 @@ const AddressButton = ({ walletAddres }) => {
                     }}
                     onClick={() => handleLogout()}
                   >
-                    <Icon component={LogoutIcon} />
                     Disconnect
+                    <LogoutOutlined />
                   </Button>
                 </div>
               )}

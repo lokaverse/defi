@@ -1,0 +1,85 @@
+@import "src/styles/mixins";
+@import "src/styles/colors";
+
+.faq-container {
+  .header-title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    padding: 44px 0px 8px 0px;
+
+    p {
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 30px;
+      letter-spacing: 0em;
+      text-align: left;
+      margin: 0px;
+      color: white;
+      @include klamp-bold-font;
+    }
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .faq-collapse {
+    border: none !important;
+
+    .ant-collapse-item {
+      border-bottom: none !important;
+    }
+
+    .ant-collapse-header {
+      background-color: $medium-grey;
+      border: none !important;
+      border-radius: 5px !important;
+      align-items: center !important;
+    }
+
+    .ant-collapse-item-active {
+      .ant-collapse-header {
+        border-bottom-left-radius: 0px !important;
+        border-bottom-right-radius: 0px !important;
+      }
+    }
+
+    .ant-collapse-expand-icon {
+      svg {
+        fill: white;
+      }
+    }
+
+    .ant-collapse-header-text {
+      color: white;
+      font-size: 12px;
+      font-weight: 400;
+      @include PPRadioGrotesk-regular-font;
+    }
+
+    .ant-collapse-content {
+      border-top: none !important;
+      background-color: $medium-grey !important;
+      border-bottom-left-radius: 5px !important;
+      border-bottom-right-radius: 5px !important;
+    }
+
+    .ant-collapse-content-box {
+      padding: 0px 24px 12px 24px !important;
+
+      p {
+        color: white;
+        font-size: 11px;
+        font-weight: 400;
+        line-height: 18px;
+        letter-spacing: 0em;
+        text-align: left;
+        @include PPRadioGrotesk-regular-font;
+      }
+    }
+  }
+}

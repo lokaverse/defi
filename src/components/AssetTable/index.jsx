@@ -8,7 +8,7 @@ import MPTSIcon from "../../assets/icon/mpts-icon.png";
 import LPTSIcon from "../../assets/icon/lpts-icon.png";
 import LOKBTCIcon from "../../assets/icon/lokbtc-icon.png";
 
-import "./style.css";
+import "./style.scss";
 
 const AssetTable = ({ showApr, showedAssets }) => {
   const { userBalance, getBalanceLoading } = useContext(AppContext);
@@ -37,7 +37,7 @@ const AssetTable = ({ showApr, showedAssets }) => {
     <section className="asset-table-contianer">
       <div className="asset-table-header-section">
         <div className="asset-title">
-          <p>My assets</p>
+          <p>MY ASSETS</p>
         </div>
         {showApr && (
           <div className="loka-apr">
