@@ -28,7 +28,7 @@ const BlockedScreen = () => {
           <span className={clsx({ "new-line": !isMobile })}>
             EARN NATIVE YIELD,{" "}
           </span>
-          SPPORT THE NETWORK
+          SUPPORT THE NETWORK
         </p>
         <AddressButton walletAddres="" />
       </div>
